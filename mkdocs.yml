@@ -101,3 +101,4 @@ markdown_extensions:
 # Page tree
 nav:
   - Home: index.md
+  - Guia de Contribuição: contributing_guidelines.md

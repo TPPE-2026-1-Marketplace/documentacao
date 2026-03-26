@@ -156,3 +156,9 @@ BREAKING CHANGE: authentication now requires token
 ## Observação final
 
 Commits padronizados tornam o histórico **legível, automatizável e escalável**, sendo essenciais em projetos colaborativos.
+
+## Histórico de Versionamento
+
+| Versão | Autor | Resumo | Data |
+| --------------- | --------------- | --------------- | --------------- |
+| `1.0` | [Bruno Bragança](https://github.com/BrunoBReis) | Documentação inicial | 26/03/2026 |
