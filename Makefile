@@ -4,7 +4,7 @@ PIP := $(VENV)/bin/pip
 MKDOCS := $(VENV)/bin/mkdocs
 STAMP := $(VENV)/.installed
 
-.PHONY: help venv install serve build clean rebuild
+.PHONY: help install serve build clean rebuild
 
 help:
 	@echo "Targets disponíveis:"
