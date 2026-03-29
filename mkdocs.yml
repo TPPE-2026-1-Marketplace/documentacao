@@ -102,3 +102,15 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Guia de Contribuição: contributing_guidelines.md
+  - Histórias de Usuário:
+      - Visão Geral: user_history.md
+      - Catálogo e Modelagem: user_history/catalogo_modelagem.md
+      - Busca, Navegação e Atendimento: user_history/busca_navegacao_atendimento.md
+      - Estoque, Loja Física e Operação: user_history/estoque_loja_fisica_operacao.md
+      - Compra, Pagamento e Entrega: user_history/compra_pagamento_entrega.md
+      - Clientes, CRM e Marketing: user_history/clientes_crm_marketing.md
+      - Fiscal, Trocas e Pós-venda: user_history/fiscal_trocas_pos_venda.md
+      - Avaliações e Conteúdo Gerado pelo Usuário: user_history/avaliacoes_conteudo_gerado.md
+      - Catálogo e Conformidade: user_history/catalogo_conformidade.md
+      - Indicadores, Metas e Gamificação: user_history/indicadores_metas_gamificacao.md
+  - Requisitos Não Funcionais: non_functional_requirements.md
