@@ -66,7 +66,7 @@ Aplicar a regra de 8 itens na vitrine principal.
 
 **História relacionada:**
 
-- Item originalmente levantado como US09 e posteriormente reclassificado como requisito não funcional
+- Item originalmente levantado como história de usuário e posteriormente reclassificado como requisito não funcional
 
 ### RN03 - Comissão automática por venda vinculada
 Calcular automaticamente a comissão de 2,5% sobre o valor da venda para o vendedor vinculado.
