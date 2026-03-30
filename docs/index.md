@@ -60,11 +60,12 @@ http://127.0.0.1:8000
       <a href="https://github.com/Ana-Luiza-SC">github.com/Ana-Luiza-SC</a>
     </td>
     <td align="center">
-      <strong>Gabriel</strong>
+      <a href="https://github.com/SAnjos3">
+        <img src="https://github.com/SAnjos3.png?size=160" width="120" alt="Foto de Gabriel"><br>
+        <strong>Gabriel</strong>
+      </a>
       <br>
-      Perfil do GitHub pendente
-      <br>
-      <code>https://github.com/</code>
+      <a href="https://github.com/SAnjos3">github.com/SAnjos3</a>
     </td>
     <td align="center">
       <a href="https://github.com/leohssjr">
