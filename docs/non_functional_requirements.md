@@ -13,6 +13,7 @@ Sincronizar o saldo de estoque em tempo real entre a loja física e a plataforma
 - [US30 - Realizar carga inicial de estoque](user_history/estoque_loja_fisica_operacao.md#us30-realizar-carga-inicial-de-estoque)
 
 **Observações:**
+
 - Possível solução: separar estoque presencial e estoque digital
 - Nem todos os modelos físicos serão disponibilizados no digital
 - Caso exista maior demanda em um canal do que no outro, deve haver um mecanismo de comunicação ou balanceamento

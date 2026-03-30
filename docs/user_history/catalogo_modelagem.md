@@ -7,6 +7,7 @@
 
 ### Detalhes
 Registrar medidas individuais dos tamanhos padrão dos modelos, incluindo:
+
 - busto
 - cintura
 - quadril
@@ -36,6 +37,7 @@ Disponibilizar a grade de tamanhos padrão para seleção no vestiário virtual.
 **para que** o usuário possa filtrar pelo tipo de evento de sua preferência.
 
 ### Exemplos de categorias
+
 - Madrinha
 - Formatura
 - Debutante
@@ -48,3 +50,4 @@ Disponibilizar a grade de tamanhos padrão para seleção no vestiário virtual.
 | `1.0` | [Ana Luiza](https://github.com/Ana-Luiza-SC), [Gabriel](https://github.com/), [Leo](https://github.com/leohssjr), [Mateus](https://github.com/MVConsorte) e [Yzabella](https://github.com/redjsun) | Documentação inicial | 28/03/2026 |
 | `1.1` | [Pablo](https://github.com/Pabloserrapxx) | Atualização e incremento de Requisitos não Funcionais | 29/03/2026 |
 | `1.2` | [Bruno Bragança](https://github.com/BrunoBReis) | Verificação e Atualização com incremento de Regras de negócio | 29/03/2026 |
+| `1.3` | [Bruno Bragança](https://github.com/BrunoBReis) | Correção da formatação da lista | 29/03/2026 |
