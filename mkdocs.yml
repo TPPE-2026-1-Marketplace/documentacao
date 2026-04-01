@@ -101,6 +101,7 @@ markdown_extensions:
 # Page tree
 nav:
   - Home: index.md
+  - Entregas: releases.md
   - Guia de Contribuição: contributing_guidelines.md
   - Histórias de Usuário:
       - Visão Geral: user_history.md
