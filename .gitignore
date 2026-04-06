@@ -6,3 +6,6 @@ env
 
 # Codex
 .codex
+
+# MkDocs build output
+site

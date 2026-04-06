@@ -4,7 +4,7 @@ PIP := $(VENV)/bin/pip
 MKDOCS := $(VENV)/bin/mkdocs
 STAMP := $(VENV)/.installed
 
-.PHONY: help install serve build clean rebuild
+.PHONY: help install serve build clean rebuild docker-build docker-serve docker-stop docker-clean
 
 help:
 	@echo "Targets disponíveis:"
@@ -13,6 +13,10 @@ help:
 	@echo "  make build    -> gera site estático"
 	@echo "  make clean    -> remove .venv"
 	@echo "  make rebuild  -> recria tudo do zero"
+	@echo "  make docker-build -> gera a imagem Docker"
+	@echo "  make docker-serve -> sobe a documentação em container"
+	@echo "  make docker-stop  -> para o container da documentação"
+	@echo "  make docker-clean -> remove container e imagem local"
 
 # Cria o ambiente virtual apenas se não existir
 $(VENV):
@@ -36,3 +40,15 @@ clean:
 	rm -rf $(VENV)
 
 rebuild: clean install
+
+docker-build:
+	docker compose build
+
+docker-serve:
+	docker compose up --build
+
+docker-stop:
+	docker compose down
+
+docker-clean:
+	docker compose down --rmi local

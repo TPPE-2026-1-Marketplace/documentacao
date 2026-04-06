@@ -1,0 +1,12 @@
+services:
+  docs:
+    image: dk-fashion-docs
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dk-fashion-docs
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    command: mkdocs serve --dev-addr=0.0.0.0:8000
