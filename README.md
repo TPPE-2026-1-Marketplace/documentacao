@@ -32,6 +32,45 @@ mkdocs serve
 http://127.0.0.1:8000
 ```
 
+## Como executar com Docker
+
+1. Gere a imagem e suba o container:
+
+```bash
+docker compose up --build
+```
+
+Ou, se preferir usar o atalho do projeto:
+
+```bash
+make docker-serve
+```
+
+2. Acesse:
+
+```text
+http://localhost:8000
+```
+
+3. Para parar o container:
+
+```bash
+docker compose down
+```
+
+Ou:
+
+```bash
+make docker-stop
+```
+
+## Como funciona a conteinerização
+
+- o `Dockerfile` cria uma imagem Python com as dependências do `requirements.txt`;
+- o `compose.yaml` publica a porta `8000` e monta o diretório do projeto em `/app`;
+- esse volume permite editar arquivos em `docs/` e ver as mudanças com hot reload no MkDocs;
+- se `requirements.txt` mudar, execute novamente `docker compose up --build`.
+
 ## Estrutura do repositório
 
 ```text
@@ -43,6 +82,8 @@ http://127.0.0.1:8000
 |   |-- non_functional_requirements.md
 |   `-- user_history/
 |-- mkdocs.yml
+|-- Dockerfile
+|-- compose.yaml
 |-- requirements.txt
 `-- README.md
 ```

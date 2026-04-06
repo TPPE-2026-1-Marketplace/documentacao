@@ -32,6 +32,51 @@ mkdocs serve
 http://127.0.0.1:8000
 ```
 
+## Como executar com Docker
+
+1. Construa a imagem e suba o container:
+
+```bash
+docker compose up --build
+```
+
+2. Acesse a documentação:
+
+```text
+http://localhost:8000
+```
+
+3. Para encerrar:
+
+```bash
+docker compose down
+```
+
+## Comparando os dois fluxos
+
+### Fluxo com ambiente virtual
+
+- cria uma `.venv` local;
+- instala os pacotes diretamente no seu sistema;
+- executa `mkdocs serve` a partir do ambiente Python do projeto.
+
+### Fluxo com Docker
+
+- cria uma imagem isolada com Python e MkDocs;
+- sobe um container com a porta `8000`;
+- monta o projeto como volume, então alterações em `docs/` e `mkdocs.yml` continuam refletindo no navegador.
+
+## Passo a passo recomendado
+
+1. Entre na pasta do projeto.
+2. Rode `docker compose up --build`.
+3. Abra `http://localhost:8000`.
+4. Edite os arquivos em `docs/`.
+5. Veja o hot reload no navegador.
+6. Ao terminar, rode `docker compose down`.
+
+Se mudar o `requirements.txt`, reconstrua a imagem com `docker compose up --build`.
+
 ## Estrutura do repositório
 
 ```text
@@ -43,6 +88,8 @@ http://127.0.0.1:8000
 |   |-- non_functional_requirements.md
 |   `-- user_history/
 |-- mkdocs.yml
+|-- Dockerfile
+|-- compose.yaml
 |-- requirements.txt
 `-- README.md
 ```
