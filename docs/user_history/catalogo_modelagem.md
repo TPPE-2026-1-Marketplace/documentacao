@@ -51,3 +51,4 @@ Disponibilizar a grade de tamanhos padrão para seleção no vestiário virtual.
 | `1.1` | [Pablo](https://github.com/Pabloserrapxx) | Atualização e incremento de Requisitos não Funcionais | 29/03/2026 |
 | `1.2` | [Bruno Bragança](https://github.com/BrunoBReis) | Verificação e Atualização com incremento de Regras de negócio | 29/03/2026 |
 | `1.3` | [Bruno Bragança](https://github.com/BrunoBReis) | Correção da formatação da lista | 29/03/2026 |
+| `1.4` | [Bruno Bragança](https://github.com/BrunoBReis) | Reorganização, renumeração e refinamento das histórias de usuário | 06/04/2026 |

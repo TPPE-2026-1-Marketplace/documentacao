@@ -30,3 +30,12 @@
 | US26 | [Implementar checkout simplificado em página única](user_history/compra_pagamento_entrega.md#us26-implementar-checkout-simplificado-em-pagina-unica) | [Compra, Pagamento e Entrega](user_history/compra_pagamento_entrega.md) | Cliente da loja | Concluir a compra em uma única página. |
 | US27 | [Exibir composição de tecidos e materiais](user_history/catalogo_conformidade.md#us27-exibir-composicao-de-tecidos-e-materiais) | [Catálogo e Conformidade](user_history/catalogo_conformidade.md) | Cliente | Visualizar a composição de tecidos e materiais antes da compra. |
 | US28 | [Realizar carga inicial de estoque](user_history/estoque_loja_fisica_operacao.md#us28-realizar-carga-inicial-de-estoque) | [Estoque, Loja Física e Operação](user_history/estoque_loja_fisica_operacao.md) | Gerente de operações | Digitalizar e cadastrar o acervo físico no início da operação. |
+
+## Histórico de Versionamento
+
+| Versão | Autor | Resumo | Data |
+| --------------- | --------------- | --------------- | --------------- |
+| `1.0` | [Ana Luiza](https://github.com/Ana-Luiza-SC), [Gabriel](https://github.com/), [Leo](https://github.com/leohssjr), [Mateus](https://github.com/MVConsorte) e [Yzabella](https://github.com/redjsun) | Documentação inicial | 28/03/2026 |
+| `1.1` | [Pablo](https://github.com/Pabloserrapxx) | Atualização e incremento de Requisitos não Funcionais | 29/03/2026 |
+| `1.2` | [Bruno Bragança](https://github.com/BrunoBReis) | Verificação e Atualização com incremento de Regras de negócio | 29/03/2026 |
+| `1.3` | [Bruno Bragança](https://github.com/BrunoBReis) | Reorganização, renumeração e refinamento das histórias de usuário | 06/04/2026 |

@@ -74,3 +74,12 @@ Calcular automaticamente a comissão de 2,5% sobre o valor da venda para o vende
 **História relacionada:**
 
 - [US12 - Calcular comissão do vendedor automaticamente](user_history/estoque_loja_fisica_operacao.md#us12-calcular-comissao-do-vendedor-automaticamente)
+
+## Histórico de Versionamento
+
+| Versão | Autor | Resumo | Data |
+| --------------- | --------------- | --------------- | --------------- |
+| `1.0` | [Ana Luiza](https://github.com/Ana-Luiza-SC), [Gabriel](https://github.com/), [Leo](https://github.com/leohssjr), [Mateus](https://github.com/MVConsorte) e [Yzabella](https://github.com/redjsun) | Documentação inicial | 28/03/2026 |
+| `1.1` | [Pablo](https://github.com/Pabloserrapxx) | Atualização e incremento de Requisitos não Funcionais | 29/03/2026 |
+| `1.2` | [Bruno Bragança](https://github.com/BrunoBReis) | Verificação e Atualização com incremento de Regras de negócio | 29/03/2026 |
+| `1.3` | [Bruno Bragança](https://github.com/BrunoBReis) | Reclassificação, revisão e relacionamento entre RNFs e histórias de usuário | 06/04/2026 |
