@@ -7,10 +7,9 @@ Sincronizar o saldo de estoque em tempo real entre a loja física e a plataforma
 
 **Histórias relacionadas:**
 
-- [US05 - Integrar leitor de código de barras ao PDV físico](user_history/estoque_loja_fisica_operacao.md#us05-integrar-leitor-de-codigo-de-barras-ao-pdv-fisico)
+- [US05 - Registrar movimentações de estoque com rastreabilidade](user_history/estoque_loja_fisica_operacao.md#us05-registrar-movimentacoes-de-estoque-com-rastreabilidade)
 - [US14 - Restringir ajuste manual de estoque ao gerente](user_history/estoque_loja_fisica_operacao.md#us14-restringir-ajuste-manual-de-estoque-ao-gerente)
-- [US28 - Registrar log de auditoria de estoque](user_history/estoque_loja_fisica_operacao.md#us28-registrar-log-de-auditoria-de-estoque)
-- [US30 - Realizar carga inicial de estoque](user_history/estoque_loja_fisica_operacao.md#us30-realizar-carga-inicial-de-estoque)
+- [US28 - Realizar carga inicial de estoque](user_history/estoque_loja_fisica_operacao.md#us28-realizar-carga-inicial-de-estoque)
 
 **Observações:**
 
@@ -25,7 +24,7 @@ Limitar a exibição de produtos em destaque na página inicial a exatamente 8 i
 
 - [US06 - Filtrar produtos por critérios de busca](user_history/busca_navegacao_atendimento.md#us06-filtrar-produtos-por-criterios-de-busca)
 - [US07 - Aplicar zoom nas fotos dos produtos](user_history/busca_navegacao_atendimento.md#us07-aplicar-zoom-nas-fotos-dos-produtos)
-- [US24 - Incluir suporte via WhatsApp com dados do produto](user_history/busca_navegacao_atendimento.md#us24-incluir-suporte-via-whatsapp-com-dados-do-produto)
+- [US23 - Incluir suporte via WhatsApp com dados do produto](user_history/busca_navegacao_atendimento.md#us23-incluir-suporte-via-whatsapp-com-dados-do-produto)
 
 ### RNF03 - Integração segura de pagamentos no site
 Integrar o sistema com as APIs de pagamento das adquirentes InfinitePay ou HyperCast, garantindo que o pagamento seja realizado dentro da plataforma.
@@ -35,7 +34,7 @@ Integrar o sistema com as APIs de pagamento das adquirentes InfinitePay ou Hyper
 - [US15 - Oferecer múltiplas formas de pagamento](user_history/compra_pagamento_entrega.md#us15-oferecer-multiplas-formas-de-pagamento)
 - [US16 - Calcular prazo e custo de frete](user_history/compra_pagamento_entrega.md#us16-calcular-prazo-e-custo-de-frete)
 - [US17 - Inserir código de rastreamento manualmente](user_history/compra_pagamento_entrega.md#us17-inserir-codigo-de-rastreamento-manualmente)
-- [US27 - Implementar checkout simplificado em página única](user_history/compra_pagamento_entrega.md#us27-implementar-checkout-simplificado-em-pagina-unica)
+- [US26 - Implementar checkout simplificado em página única](user_history/compra_pagamento_entrega.md#us26-implementar-checkout-simplificado-em-pagina-unica)
 
 ### RNF04 - Integração com emissão de NF-e
 Integrar o sistema com um serviço de emissão de Nota Fiscal Eletrônica (NF-e) e Certificado Digital.
@@ -67,7 +66,7 @@ Aplicar a regra de 8 itens na vitrine principal.
 
 **História relacionada:**
 
-- Item originalmente levantado como história de usuário e posteriormente reclassificado como requisito não funcional
+- Item originalmente levantado como US09 e posteriormente reclassificado como requisito não funcional
 
 ### RN03 - Comissão automática por venda vinculada
 Calcular automaticamente a comissão de 2,5% sobre o valor da venda para o vendedor vinculado.
@@ -82,4 +81,5 @@ Calcular automaticamente a comissão de 2,5% sobre o valor da venda para o vende
 | --------------- | --------------- | --------------- | --------------- |
 | `1.0` | [Ana Luiza](https://github.com/Ana-Luiza-SC), [Gabriel](https://github.com/), [Leo](https://github.com/leohssjr), [Mateus](https://github.com/MVConsorte) e [Yzabella](https://github.com/redjsun) | Documentação inicial | 28/03/2026 |
 | `1.1` | [Pablo](https://github.com/Pabloserrapxx) | Atualização e incremento de Requisitos não Funcionais | 29/03/2026 |
-  | `1.2` | [Bruno Bragança](https://github.com/BrunoBReis) | Verificação e Atualização com incremento de Regras de negócio | 29/03/2026 |
+| `1.2` | [Bruno Bragança](https://github.com/BrunoBReis) | Verificação e Atualização com incremento de Regras de negócio | 29/03/2026 |
+| `1.3` | [Bruno Bragança](https://github.com/BrunoBReis) | Reclassificação, revisão e relacionamento entre RNFs e histórias de usuário | 06/04/2026 |

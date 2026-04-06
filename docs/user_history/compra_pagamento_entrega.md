@@ -3,7 +3,7 @@
 ## US08 - Retirar pedido na loja física
 **Como** cliente,  
 **quero** ter a opção de retirar o pedido na loja,  
-**para que** eu economize no frete e retire o produto pessoalmente.
+**para que** eu economize no frete e possa retirar o produto pessoalmente.
 
 ### Detalhes
 Oferecer a modalidade de retirada na loja na unidade Taguatinga durante a finalização da compra.
@@ -11,7 +11,7 @@ Oferecer a modalidade de retirada na loja na unidade Taguatinga durante a finali
 ## US09 - Validar retirada presencial com código de verificação
 **Como** vendedor,  
 **quero** confirmar a retirada do pedido do cliente com um código de verificação,  
-**para que** eu garanta a segurança e a entrega correta dos vestidos.
+**para que** eu garanta a segurança do processo e a entrega correta dos vestidos.
 
 ### Funcionalidade
 Gerar código de verificação em duas etapas (2FA) via SMS ou WhatsApp para validação de retiradas presenciais.
@@ -35,10 +35,10 @@ Gerar código de verificação em duas etapas (2FA) via SMS ou WhatsApp para val
 **quero** disponibilizar um campo para inserção manual do código de rastreamento do objeto,  
 **para que** o cliente possa acompanhar a entrega de sua mercadoria.
 
-## US27 - Implementar checkout simplificado em página única
+## US26 - Implementar checkout simplificado em página única
 **Como** cliente da loja,  
 **quero** finalizar minha compra em uma única página de checkout simplificada,  
-**para que** eu possa concluir meu pedido de forma rápida e sem distrações, favorecendo a compra por impulso.
+**para que** eu possa concluir meu pedido de forma rápida e sem distrações.
 
 ## Histórico de Versionamento
 
@@ -47,3 +47,4 @@ Gerar código de verificação em duas etapas (2FA) via SMS ou WhatsApp para val
 | `1.0` | [Ana Luiza](https://github.com/Ana-Luiza-SC), [Gabriel](https://github.com/), [Leo](https://github.com/leohssjr), [Mateus](https://github.com/MVConsorte) e [Yzabella](https://github.com/redjsun) | Documentação inicial | 28/03/2026 |
 | `1.1` | [Pablo](https://github.com/Pabloserrapxx) | Atualização e incremento de Requisitos não Funcionais | 29/03/2026 |
 | `1.2` | [Bruno Bragança](https://github.com/BrunoBReis) | Verificação e Atualização com incremento de Regras de negócio | 29/03/2026 |
+| `1.3` | [Bruno Bragança](https://github.com/BrunoBReis) | Reorganização, renumeração e refinamento das histórias de usuário | 06/04/2026 |
