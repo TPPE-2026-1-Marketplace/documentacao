@@ -103,6 +103,7 @@ nav:
   - Home: index.md
   - Entregas: releases.md
   - Guia de Contribuição: contributing_guidelines.md
+  - Gitflow do Projeto: gitflow.md
   - Histórias de Usuário:
       - Visão Geral: user_history.md
       - Catálogo e Modelagem: user_history/catalogo_modelagem.md
