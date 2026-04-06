@@ -3,12 +3,12 @@
 ## US05 - Registrar movimentações de estoque com rastreabilidade
 **Como** vendedor,  
 **quero** utilizar o código de barras para registrar automaticamente as movimentações de estoque, com identificação do usuário, data e motivo,  
-**para que** o estoque seja atualizado corretamente e as movimentações possam ser auditadas.
+**para que** o estoque seja atualizado corretamente e cada movimentação possa ser auditada.
 
 ## US11 - Vincular vendedor a cada transação
 **Como** caixa da loja,  
 **quero** poder associar o vendedor da venda,  
-**para que** os lojistas possam receber suas comissões e as vendas de cada um sejam rastreadas.
+**para que** as vendas de cada vendedor sejam rastreadas e as comissões possam ser apuradas corretamente.
 
 ### Finalidade
 - Permitir a vinculação de um vendedor específico a cada transação
@@ -17,7 +17,7 @@
 ## US12 - Calcular comissão do vendedor automaticamente
 **Como** administrador da loja,  
 **quero** poder visualizar as comissões que devo pagar,  
-**para que** eu não precise calcular manualmente a comissão de cada lojista no fechamento da folha de pagamento.
+**para que** eu não precise calcular manualmente a comissão de cada vendedor no fechamento da folha de pagamento.
 
 ### Regra de negócio
 Calcular automaticamente a comissão de 2,5% sobre o valor da venda para o vendedor vinculado.
@@ -34,8 +34,8 @@ Calcular automaticamente a comissão de 2,5% sobre o valor da venda para o vende
 
 ## US14 - Restringir ajuste manual de estoque ao gerente
 **Como** administrador da loja,  
-**quero** que apenas o gerente da loja possa cadastrar ou retirar produtos do e-commerce,  
-**para que** eu mantenha a segurança e a manutenção do sistema.
+**quero** que apenas o gerente da loja possa adicionar ou remover produtos do e-commerce,  
+**para que** a manutenção do sistema seja realizada apenas por pessoas autorizadas.
 
 ### Regra de acesso
 Restringir as funções de ajuste manual de estoque, como adição e exclusão, exclusivamente ao perfil de gerente.

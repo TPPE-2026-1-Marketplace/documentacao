@@ -16,7 +16,7 @@ Registrar medidas individuais dos tamanhos padrão dos modelos, incluindo:
 ## US02 - Selecionar tamanho padrão no vestuário virtual
 **Como** cliente,  
 **quero** poder selecionar o tamanho do modelo,  
-**para que** eu possa enviá-lo ao carrinho de compras.
+**para que** eu possa adicioná-lo ao carrinho de compras.
 
 ### Regra de negócio
 Disponibilizar a grade de tamanhos padrão para seleção no vestiário virtual.
@@ -24,7 +24,7 @@ Disponibilizar a grade de tamanhos padrão para seleção no vestiário virtual.
 ## US03 - Categorizar modelos por comprimento
 **Como** gerente,  
 **quero** poder categorizar os modelos nos comprimentos que eu desejar,  
-**para que** o usuário possa filtrar pelo tipo de comprimento do modelo.
+**para que** o cliente possa filtrar os modelos pelo tipo de comprimento.
 
 ### Categorias sugeridas
 - Midi
@@ -34,7 +34,7 @@ Disponibilizar a grade de tamanhos padrão para seleção no vestiário virtual.
 ## US04 - Categorizar produtos por tipo de evento
 **Como** gerente,  
 **quero** poder categorizar os modelos por tipos de evento que eu desejar,  
-**para que** o usuário possa filtrar pelo tipo de evento de sua preferência.
+**para que** o cliente possa filtrar os modelos pelo tipo de evento de sua preferência.
 
 ### Exemplos de categorias
 
