@@ -18,15 +18,7 @@
 ### Funcionalidade
 Implementar zoom em múltiplas fotos na galeria de produtos.
 
-## US24 - Incluir suporte via WhatsApp com dados do produto
+## US23 - Incluir suporte via WhatsApp com dados do produto
 **Como** cliente interessado em um item,  
-**quero** clicar em um botão de suporte que já envie os dados do produto automaticamente para o WhatsApp da loja,  
-**para que** eu receba um atendimento rápido sem precisar descrever o produto em que estou interessado.
-
-## Histórico de Versionamento
-
-| Versão | Autor | Resumo | Data |
-| --------------- | --------------- | --------------- | --------------- |
-| `1.0` | [Ana Luiza](https://github.com/Ana-Luiza-SC), [Gabriel](https://github.com/), [Leo](https://github.com/leohssjr), [Mateus](https://github.com/MVConsorte) e [Yzabella](https://github.com/redjsun) | Documentação inicial | 28/03/2026 |
-| `1.1` | [Pablo](https://github.com/Pabloserrapxx) | Atualização e incremento de Requisitos não Funcionais | 29/03/2026 |
-| `1.2` | [Bruno Bragança](https://github.com/BrunoBReis) | Verificação e Atualização com incremento de Regras de negócio | 29/03/2026 |
+**quero** acionar um botão de suporte que envie automaticamente os dados do produto visualizado para o WhatsApp da loja,  
+**para que** eu receba atendimento rápido sem precisar descrever manualmente o item.

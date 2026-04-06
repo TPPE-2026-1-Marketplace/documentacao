@@ -1,9 +1,9 @@
 # Estoque, Loja Física e Operação
 
-## US05 - Integrar leitor de código de barras ao PDV físico
+## US05 - Registrar movimentações de estoque com rastreabilidade
 **Como** vendedor,  
-**quero** poder utilizar o código de barras,  
-**para que** possa realizar baixa automaticamente no estoque no PDV físico.
+**quero** utilizar o código de barras para registrar automaticamente as movimentações de estoque, com identificação do usuário, data e motivo,  
+**para que** o estoque seja atualizado corretamente e as movimentações possam ser auditadas.
 
 ## US11 - Vincular vendedor a cada transação
 **Como** caixa da loja,  
@@ -40,20 +40,7 @@ Calcular automaticamente a comissão de 2,5% sobre o valor da venda para o vende
 ### Regra de acesso
 Restringir as funções de ajuste manual de estoque, como adição e exclusão, exclusivamente ao perfil de gerente.
 
-## US28 - Registrar log de auditoria de estoque
-**Como** administrador ou gerente,  
-**quero** que o sistema registre automaticamente um log com usuário, data e motivo para cada movimentação de estoque,  
-**para que** eu tenha total rastreabilidade sobre as alterações e possa auditar possíveis divergências.
-
-## US30 - Realizar carga inicial de estoque
+## US28 - Realizar carga inicial de estoque
 **Como** gerente de operações,  
 **quero** uma interface para realizar a carga inicial e a digitalização do acervo atual,  
 **para que** eu possa cadastrar todo o estoque físico no sistema de forma organizada no início da operação.
-
-## Histórico de Versionamento
-
-| Versão | Autor | Resumo | Data |
-| --------------- | --------------- | --------------- | --------------- |
-| `1.0` | [Ana Luiza](https://github.com/Ana-Luiza-SC), [Gabriel](https://github.com/), [Leo](https://github.com/leohssjr), [Mateus](https://github.com/MVConsorte) e [Yzabella](https://github.com/redjsun) | Documentação inicial | 28/03/2026 |
-| `1.1` | [Pablo](https://github.com/Pabloserrapxx) | Atualização e incremento de Requisitos não Funcionais | 29/03/2026 |
-| `1.2` | [Bruno Bragança](https://github.com/BrunoBReis) | Verificação e Atualização com incremento de Regras de negócio | 29/03/2026 |

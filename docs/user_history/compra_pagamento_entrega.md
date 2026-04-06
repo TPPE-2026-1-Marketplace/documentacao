@@ -35,15 +35,7 @@ Gerar código de verificação em duas etapas (2FA) via SMS ou WhatsApp para val
 **quero** disponibilizar um campo para inserção manual do código de rastreamento do objeto,  
 **para que** o cliente possa acompanhar a entrega de sua mercadoria.
 
-## US27 - Implementar checkout simplificado em página única
+## US26 - Implementar checkout simplificado em página única
 **Como** cliente da loja,  
 **quero** finalizar minha compra em uma única página de checkout simplificada,  
 **para que** eu possa concluir meu pedido de forma rápida e sem distrações, favorecendo a compra por impulso.
-
-## Histórico de Versionamento
-
-| Versão | Autor | Resumo | Data |
-| --------------- | --------------- | --------------- | --------------- |
-| `1.0` | [Ana Luiza](https://github.com/Ana-Luiza-SC), [Gabriel](https://github.com/), [Leo](https://github.com/leohssjr), [Mateus](https://github.com/MVConsorte) e [Yzabella](https://github.com/redjsun) | Documentação inicial | 28/03/2026 |
-| `1.1` | [Pablo](https://github.com/Pabloserrapxx) | Atualização e incremento de Requisitos não Funcionais | 29/03/2026 |
-| `1.2` | [Bruno Bragança](https://github.com/BrunoBReis) | Verificação e Atualização com incremento de Regras de negócio | 29/03/2026 |
