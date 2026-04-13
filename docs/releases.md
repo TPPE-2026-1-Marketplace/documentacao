@@ -21,7 +21,7 @@ Este documento organiza os pontos previstos para cada entrega do projeto.
 
 #### **Docker**
 
-- **Backend:** fazer um endpoint;
+- **Backend:** fazer um endpoint; O endpoint deve ser um CRUD, utilizar uma boa arquitetura faz diferença (MVC em camadas)
 - **Banco de Dados:** mostrar o pgAdmin;
 - **Front-end:** fazer um `hello world` simples.
 
