@@ -1,18 +1,25 @@
 # Avaliações e Conteúdo Gerado pelo Usuário
 
-## US20 - Avaliar produtos com estrelas
-**Como** cliente da loja,  
-**quero** atribuir uma pontuação de 1 a 5 estrelas aos produtos que comprei,  
+## US07 - Avaliar produtos
+**Como** cliente,  
+**quero** expor minha avaliação do produto em estrelas e comentários,  
 **para que** eu possa expressar meu nível de satisfação com a compra.
 
-## US21 - Comentar e enviar fotos na avaliação
-**Como** cliente da loja,  
-**quero** escrever um comentário detalhado e fazer o upload de fotos na minha avaliação,  
-**para que** eu possa compartilhar com outros compradores evidências da minha experiência real com a compra.
+### Regras de negócio
+- A avaliação em estrelas deve aceitar notas de 1 a 5.
+- O comentário textual deve permitir até 2.000 caracteres.
 
-## US22 - Moderar avaliações de produtos
-**Como** administrador do site,  
-**quero** ter uma interface para aprovar ou excluir as avaliações recebidas,  
+## US08 - Visualização de avaliação do produto
+**Como** cliente,  
+**quero** visualizar as avaliações de outros usuários do produto que desejo comprar,  
+**para que** eu possa ter mais confiança na qualidade e confiabilidade da compra.
+
+### Regra de negócio
+As avaliações devem ser exibidas logo abaixo das especificações do produto.
+
+## US09 - Moderar avaliações de produtos
+**Como** gerente,  
+**quero** ter uma interface para excluir as avaliações dos produtos recebidas,  
 **para que** eu possa evitar conteúdos ofensivos, spam ou comentários irrelevantes sobre os produtos.
 
 ## Histórico de Versionamento
@@ -23,3 +30,4 @@
 | `1.1` | [Pablo](https://github.com/Pabloserrapxx) | Atualização e incremento de Requisitos não Funcionais | 29/03/2026 |
 | `1.2` | [Bruno Bragança](https://github.com/BrunoBReis) | Verificação e Atualização com incremento de Regras de negócio | 29/03/2026 |
 | `1.3` | [Bruno Bragança](https://github.com/BrunoBReis) | Reorganização, renumeração e refinamento das histórias de usuário | 06/04/2026 |
+| `1.4` | [Pablo](https://github.com/Pabloserrapxx) | Substituição das histórias por novo escopo de avaliações e moderação | 26/04/2026 |

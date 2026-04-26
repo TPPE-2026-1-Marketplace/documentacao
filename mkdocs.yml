@@ -113,6 +113,5 @@ nav:
       - Clientes, CRM e Marketing: user_history/clientes_crm_marketing.md
       - Fiscal, Trocas e Pós-venda: user_history/fiscal_trocas_pos_venda.md
       - Avaliações e Conteúdo Gerado pelo Usuário: user_history/avaliacoes_conteudo_gerado.md
-      - Catálogo e Conformidade: user_history/catalogo_conformidade.md
       - Indicadores, Metas e Gamificação: user_history/indicadores_metas_gamificacao.md
   - Requisitos Não Funcionais: non_functional_requirements.md

@@ -1,27 +1,34 @@
 # Busca, Navegação e Atendimento
 
-## US06 - Filtrar produtos por critérios de busca
+## US03 - Página inicial
 **Como** cliente,  
-**quero** filtrar por tamanho, cor e faixa de preço,  
-**para que** eu encontre rapidamente os produtos que mais me interessam.
+**quero** ter acesso a uma página inicial,  
+**para que** me sejam expostos os melhores produtos, categorias e promoções.
 
-### Funcionalidades
-- Disponibilizar filtros de busca facetada por tamanho
-- Disponibilizar filtros de busca facetada por cor
-- Disponibilizar filtros de busca facetada por faixa de preço
-
-## US07 - Aplicar zoom nas fotos dos produtos
+## US04 - Filtrar produtos por critérios de busca
 **Como** cliente,  
-**quero** ter a opção de dar zoom nas fotos dos produtos,  
-**para que** eu consiga visualizar os vestidos com mais detalhes.
+**quero** que, quando eu for buscar um produto, eu possa filtrar por tamanho, cor e faixa de preço,  
+**para que** eu selecione melhor os produtos que quero visualizar.
 
-### Funcionalidade
-Implementar zoom em múltiplas fotos na galeria de produtos.
+## US05 - Visualizar detalhes de um produto
+**Como** cliente,  
+**quero** visualizar uma página exclusiva do produto com informações detalhadas,  
+**para que** eu possa avaliar se realmente quero comprá-lo.
 
-## US23 - Incluir suporte via WhatsApp com dados do produto
-**Como** cliente interessado em um item,  
-**quero** acionar um botão de suporte que envie automaticamente os dados do produto visualizado para o WhatsApp da loja,  
-**para que** eu receba atendimento rapidamente sem precisar descrever manualmente o item.
+### Regras de negócio
+- A página de produto deve exibir fotos, tamanhos e cores disponíveis.
+- A visualização de fotos deve ocorrer por carrossel.
+- Deve existir tabela de medidas por tamanho para apoiar a escolha do cliente.
+
+## US06 - Adicionar ao carrinho
+**Como** cliente,  
+**quero** poder adicionar o produto ao carrinho selecionando cor e tamanho disponíveis,  
+**para que** eu compre o item com as especificações desejadas.
+
+## US10 - Incluir redirecionamento para o WhatsApp
+**Como** cliente,  
+**quero** clicar em um botão de suporte do WhatsApp e ser redirecionado para o WhatsApp da loja,  
+**para que** eu possa conversar com as atendentes da loja física para sanar dúvidas sobre os produtos.
 
 ## Histórico de Versionamento
 
@@ -31,3 +38,4 @@ Implementar zoom em múltiplas fotos na galeria de produtos.
 | `1.1` | [Pablo](https://github.com/Pabloserrapxx) | Atualização e incremento de Requisitos não Funcionais | 29/03/2026 |
 | `1.2` | [Bruno Bragança](https://github.com/BrunoBReis) | Verificação e Atualização com incremento de Regras de negócio | 29/03/2026 |
 | `1.3` | [Bruno Bragança](https://github.com/BrunoBReis) | Reorganização, renumeração e refinamento das histórias de usuário | 06/04/2026 |
+| `1.4` | [Pablo](https://github.com/Pabloserrapxx) | Substituição das histórias por novo escopo de navegação, vitrine e atendimento | 26/04/2026 |
