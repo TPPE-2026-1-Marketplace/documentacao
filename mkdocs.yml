@@ -28,7 +28,6 @@ site_description: >-
 repo_name: TPPE-2026-1-Marketplace/documentacao
 repo_url: https://github.com/TPPE-2026-1-Marketplace/documentacao
 
-
 # Configuration
 theme:
   name: material
@@ -60,7 +59,7 @@ theme:
     - search.suggest
     - toc.follow
     # - toc.integrate
-  
+
   # Material theme configuration
   palette:
     - media: "(prefers-color-scheme)"
@@ -82,7 +81,7 @@ theme:
         icon: material/toggle-switch-off
         name: Preferência do sistema
   font:
-    text: Ubuntu 
+    text: Ubuntu
     code: Ubuntu Mono
   favicon: assets/logo.png
   logo: assets/logo.png
@@ -91,7 +90,6 @@ theme:
 plugins:
   - search:
       separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
-
 
 markdown_extensions:
   - pymdownx.tasklist:
@@ -104,8 +102,8 @@ nav:
   - Entregas: releases.md
   - Guia de Contribuição: contributing_guidelines.md
   - Gitflow do Projeto: gitflow.md
-  - Histórias de Usuário:
-      - Visão Geral: user_history.md
+  - Backlog:
+      - Visão Geral: backlog.md
       - Catálogo e Modelagem: user_history/catalogo_modelagem.md
       - Busca, Navegação e Atendimento: user_history/busca_navegacao_atendimento.md
       - Estoque, Loja Física e Operação: user_history/estoque_loja_fisica_operacao.md
