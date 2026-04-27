@@ -113,3 +113,4 @@ nav:
       - Avaliações e Conteúdo Gerado pelo Usuário: user_history/avaliacoes_conteudo_gerado.md
       - Indicadores, Metas e Gamificação: user_history/indicadores_metas_gamificacao.md
   - Requisitos Não Funcionais: non_functional_requirements.md
+  - Protótipo: prototipo.md
