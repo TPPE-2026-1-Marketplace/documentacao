@@ -41,6 +41,12 @@ Este documento organiza os pontos previstos para cada entrega do projeto.
 
 - utilizar um lint;
 - configurar o lint para não pegar arquivos de configuração.
+- utilização da Orientação a Objeto
+- diretório de `utils/` para organizar os scripts do projeto
+- não utilizar números mágicos (sempre atrelar os valores à constantes descritivas)
+- comentários reduzidos. NÃO PODE TER EMOJI
+- Laços de repetição O(1)
+  - map e funções lambdas
 
 #### **Testes parametrizados**
 
