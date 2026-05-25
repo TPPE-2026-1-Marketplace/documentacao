@@ -1,0 +1,2050 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação destinada para o projeto de TPPE">
+      
+      
+      
+        <link rel="canonical" href="https://TPPE-2026-1-Marketplace.github.io/documentacao/physical_data_model/">
+      
+      
+        <link rel="prev" href="../prototipo/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Modelo Físico do Banco de Dados - DK Fashion - Documentação</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CUbuntu+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Ubuntu Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modelo-fisico-do-banco-de-dados" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="DK Fashion - Documentação" class="md-header__button md-logo" aria-label="DK Fashion - Documentação" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DK Fashion - Documentação
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Modelo Físico do Banco de Dados
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Modo escuro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo escuro" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Preferência do sistema"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Preferência do sistema" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TPPE-2026-1-Marketplace/documentacao" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TPPE-2026-1-Marketplace/documentacao
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../releases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Entregas
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contributing_guidelines/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guia de Contribuição
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../gitflow/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Gitflow do Projeto
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../backlog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Backlog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../non_functional_requirements/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Requisitos Não Funcionais
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../prototipo/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Protótipo
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Modelo Físico do Banco de Dados
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="DK Fashion - Documentação" class="md-nav__button md-logo" aria-label="DK Fashion - Documentação" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    DK Fashion - Documentação
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TPPE-2026-1-Marketplace/documentacao" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TPPE-2026-1-Marketplace/documentacao
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../releases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing_guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia de Contribuição
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gitflow do Projeto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backlog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Backlog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user_history/catalogo_modelagem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catálogo e Modelagem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user_history/busca_navegacao_atendimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Busca, Navegação e Atendimento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user_history/estoque_loja_fisica_operacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estoque, Loja Física e Operação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user_history/compra_pagamento_entrega/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compra, Pagamento e Entrega
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user_history/clientes_crm_marketing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clientes, CRM e Marketing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user_history/fiscal_trocas_pos_venda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fiscal, Trocas e Pós-venda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user_history/avaliacoes_conteudo_gerado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avaliações e Conteúdo Gerado pelo Usuário
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user_history/indicadores_metas_gamificacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Indicadores, Metas e Gamificação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../non_functional_requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos Não Funcionais
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prototipo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protótipo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo Físico do Banco de Dados
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo Físico do Banco de Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visão Geral
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visão Geral
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="modelo-fisico-do-banco-de-dados">Modelo Físico do Banco de Dados</h1>
+<p><img alt="Modelo Físico do Banco de Dados" src="../assets/physical_data_model.png" /></p>
+<h2 id="visao-geral">Visão Geral</h2>
+<p>O modelo físico apresentado representa a estrutura de banco de dados de um sistema de marketplace de moda, contemplando funcionalidades relacionadas a:</p>
+<ul>
+<li>Cadastro de pessoas e funcionários</li>
+<li>Produtos e variantes</li>
+<li>Controle de estoque</li>
+<li>Pedidos</li>
+<li>Pagamentos</li>
+<li>Cupons</li>
+<li>Avaliações</li>
+<li>Metas de vendas</li>
+<li>Imagens de catálogo</li>
+<li>Endereços</li>
+<li>Auditoria de movimentações</li>
+</ul>
+<p>O banco foi modelado seguindo princípios relacionais, utilizando chaves primárias e estrangeiras para garantir integridade e relacionamento entre os dados.</p>
+<hr />
+<h1 id="estrutura-geral-do-sistema">Estrutura Geral do Sistema</h1>
+<p>O banco está dividido em alguns grandes domínios:</p>
+<table>
+<thead>
+<tr>
+<th>Domínio</th>
+<th>Responsabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pessoas</td>
+<td>Clientes e funcionários</td>
+</tr>
+<tr>
+<td>Produtos</td>
+<td>Produtos, categorias, variantes e imagens</td>
+</tr>
+<tr>
+<td>Pedidos</td>
+<td>Pedidos, itens e pagamentos</td>
+</tr>
+<tr>
+<td>Estoque</td>
+<td>Controle e histórico de movimentações</td>
+</tr>
+<tr>
+<td>Marketing</td>
+<td>Cupons e avaliações</td>
+</tr>
+<tr>
+<td>Gestão</td>
+<td>Metas de vendas</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="entidades-do-sistema">Entidades do Sistema</h1>
+<hr />
+<h1 id="person">Person</h1>
+<p>Tabela responsável pelo armazenamento das pessoas cadastradas na plataforma.</p>
+<h2 id="campos-principais">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cpf</td>
+<td>Identificador único da pessoa</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Nome completo</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Email da pessoa</td>
+</tr>
+<tr>
+<td>telefone</td>
+<td>Telefone de contato</td>
+</tr>
+<tr>
+<td>senha</td>
+<td>Senha de autenticação</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relacionamentos">Relacionamentos</h2>
+<ul>
+<li>Uma pessoa pode possuir:</li>
+<li>um endereço</li>
+<li>avaliações</li>
+<li>pedidos</li>
+<li>um vínculo como funcionário</li>
+</ul>
+<hr />
+<h1 id="address">Address</h1>
+<p>Tabela responsável pelo endereço associado a uma pessoa.</p>
+<h2 id="campos-principais_1">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>Identificador do endereço</td>
+</tr>
+<tr>
+<td>cpf_pessoa</td>
+<td>Pessoa relacionada</td>
+</tr>
+<tr>
+<td>cep</td>
+<td>CEP</td>
+</tr>
+<tr>
+<td>logradouro</td>
+<td>Rua/Avenida</td>
+</tr>
+<tr>
+<td>numero</td>
+<td>Número do endereço</td>
+</tr>
+<tr>
+<td>complemento</td>
+<td>Complemento</td>
+</tr>
+<tr>
+<td>bairro</td>
+<td>Bairro</td>
+</tr>
+<tr>
+<td>cidade</td>
+<td>Cidade</td>
+</tr>
+<tr>
+<td>uf</td>
+<td>Unidade federativa</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relacionamentos_1">Relacionamentos</h2>
+<ul>
+<li>Um endereço pertence a uma pessoa.</li>
+</ul>
+<hr />
+<h1 id="employee">Employee</h1>
+<p>Tabela que representa funcionários da loja.</p>
+<p>A modelagem foi feita utilizando o CPF da pessoa como chave primária e chave estrangeira ao mesmo tempo, caracterizando uma especialização da entidade <code>person</code>.</p>
+<h2 id="campos-principais_2">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cpf</td>
+<td>CPF do funcionário</td>
+</tr>
+<tr>
+<td>ativo</td>
+<td>Indica se o funcionário está ativo</td>
+</tr>
+<tr>
+<td>role_perfil</td>
+<td>Perfil de acesso</td>
+</tr>
+<tr>
+<td>taxa_comissao</td>
+<td>Comissão do funcionário</td>
+</tr>
+<tr>
+<td>meta_vendas</td>
+<td>Meta individual</td>
+</tr>
+<tr>
+<td>codigo_funcionario</td>
+<td>Código interno</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relacionamentos_2">Relacionamentos</h2>
+<ul>
+<li>Um funcionário é obrigatoriamente uma pessoa.</li>
+<li>Um funcionário pode participar de pedidos.</li>
+<li>Um funcionário pode possuir metas de vendas.</li>
+</ul>
+<hr />
+<h1 id="sales-goal">Sales Goal</h1>
+<p>Tabela responsável pelas metas de vendas dos funcionários.</p>
+<h2 id="campos-principais_3">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_goal</td>
+<td>Identificador</td>
+</tr>
+<tr>
+<td>cpf_funcionario</td>
+<td>Funcionário relacionado</td>
+</tr>
+<tr>
+<td>mes</td>
+<td>Mês da meta</td>
+</tr>
+<tr>
+<td>ano</td>
+<td>Ano da meta</td>
+</tr>
+<tr>
+<td>valor_meta</td>
+<td>Valor esperado</td>
+</tr>
+<tr>
+<td>taxa_comissao_bonus</td>
+<td>Comissão bônus</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relacionamentos_3">Relacionamentos</h2>
+<ul>
+<li>Uma meta pertence a um funcionário.</li>
+</ul>
+<hr />
+<h1 id="product">Product</h1>
+<p>Tabela principal de produtos.</p>
+<h2 id="campos-principais_4">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_produto</td>
+<td>Identificador do produto</td>
+</tr>
+<tr>
+<td>titulo</td>
+<td>Nome do produto</td>
+</tr>
+<tr>
+<td>descricao</td>
+<td>Descrição</td>
+</tr>
+<tr>
+<td>destaque</td>
+<td>Produto em destaque</td>
+</tr>
+<tr>
+<td>qual_medida</td>
+<td>Unidade de medida</td>
+</tr>
+<tr>
+<td>material</td>
+<td>Material</td>
+</tr>
+<tr>
+<td>composicao</td>
+<td>Composição</td>
+</tr>
+<tr>
+<td>silhueta</td>
+<td>Modelagem</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>Tags de busca</td>
+</tr>
+<tr>
+<td>preco_base</td>
+<td>Preço base</td>
+</tr>
+<tr>
+<td>sku</td>
+<td>SKU principal</td>
+</tr>
+<tr>
+<td>media_avaliacao</td>
+<td>Média das avaliações</td>
+</tr>
+<tr>
+<td>total_avaliacoes</td>
+<td>Quantidade de avaliações</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relacionamentos_4">Relacionamentos</h2>
+<ul>
+<li>Um produto pode:</li>
+<li>possuir variantes</li>
+<li>possuir categorias</li>
+<li>possuir avaliações</li>
+<li>participar de cupons</li>
+</ul>
+<hr />
+<h1 id="product-variant">Product Variant</h1>
+<p>Tabela responsável pelas variantes de produtos.</p>
+<p>Permite que um mesmo produto possua diferentes:</p>
+<ul>
+<li>tamanhos</li>
+<li>cores</li>
+<li>medidas</li>
+<li>preços</li>
+</ul>
+<h2 id="campos-principais_5">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>codigo_sku</td>
+<td>SKU da variante</td>
+</tr>
+<tr>
+<td>preco_variante</td>
+<td>Preço específico</td>
+</tr>
+<tr>
+<td>ativo</td>
+<td>Disponibilidade</td>
+</tr>
+<tr>
+<td>cor</td>
+<td>Cor do produto</td>
+</tr>
+<tr>
+<td>tamanho</td>
+<td>Tamanho</td>
+</tr>
+<tr>
+<td>medidas</td>
+<td>Medidas adicionais</td>
+</tr>
+<tr>
+<td>id_produto</td>
+<td>Produto relacionado</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relacionamentos_5">Relacionamentos</h2>
+<ul>
+<li>Uma variante pertence a um produto.</li>
+<li>Uma variante pode possuir:</li>
+<li>estoque</li>
+<li>imagens de catálogo</li>
+<li>itens de pedido</li>
+<li>movimentações de estoque</li>
+</ul>
+<hr />
+<h1 id="category">Category</h1>
+<p>Tabela de categorias dos produtos.</p>
+<h2 id="campos-principais_6">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_categoria</td>
+<td>Identificador</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Nome da categoria</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="product-category">Product Category</h1>
+<p>Tabela associativa entre produtos e categorias.</p>
+<p>Implementa relacionamento muitos-para-muitos.</p>
+<h2 id="relacionamentos_6">Relacionamentos</h2>
+<ul>
+<li>Um produto pode possuir várias categorias.</li>
+<li>Uma categoria pode possuir vários produtos.</li>
+</ul>
+<hr />
+<h1 id="image">Image</h1>
+<p>Tabela responsável pelas imagens do sistema.</p>
+<h2 id="campos-principais_7">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_imagem</td>
+<td>Identificador</td>
+</tr>
+<tr>
+<td>url</td>
+<td>URL da imagem</td>
+</tr>
+<tr>
+<td>ordem</td>
+<td>Ordem de exibição</td>
+</tr>
+<tr>
+<td>descricao</td>
+<td>Descrição</td>
+</tr>
+<tr>
+<td>local_renderizacao</td>
+<td>Local de exibição</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="catalog-image">Catalog Image</h1>
+<p>Tabela associativa entre imagens e variantes de produtos.</p>
+<h2 id="campos-principais_8">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_imagem</td>
+<td>Imagem relacionada</td>
+</tr>
+<tr>
+<td>codigo_sku</td>
+<td>Variante relacionada</td>
+</tr>
+<tr>
+<td>ordem_no_catalogo</td>
+<td>Ordem no catálogo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="stock">Stock</h1>
+<p>Tabela responsável pelo controle de estoque atual.</p>
+<h2 id="campos-principais_9">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>codigo_sku</td>
+<td>Variante relacionada</td>
+</tr>
+<tr>
+<td>qtd_online</td>
+<td>Quantidade disponível online</td>
+</tr>
+<tr>
+<td>qtd_loja_fisica</td>
+<td>Quantidade disponível em loja</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relacionamentos_7">Relacionamentos</h2>
+<ul>
+<li>O estoque pertence a uma variante.</li>
+</ul>
+<hr />
+<h1 id="stock-log">Stock Log</h1>
+<p>Tabela de auditoria de movimentações de estoque.</p>
+<p>Responsável por registrar:</p>
+<ul>
+<li>entradas</li>
+<li>saídas</li>
+<li>alterações</li>
+<li>ajustes</li>
+</ul>
+<h2 id="campos-principais_10">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_log</td>
+<td>Identificador</td>
+</tr>
+<tr>
+<td>codigo_sku</td>
+<td>Variante afetada</td>
+</tr>
+<tr>
+<td>id_pedido</td>
+<td>Pedido relacionado</td>
+</tr>
+<tr>
+<td>tipo_movimentacao</td>
+<td>Tipo da movimentação</td>
+</tr>
+<tr>
+<td>quantidade_movimentada</td>
+<td>Quantidade alterada</td>
+</tr>
+<tr>
+<td>data_criacao</td>
+<td>Data do evento</td>
+</tr>
+<tr>
+<td>valor_anterior_online</td>
+<td>Estoque anterior online</td>
+</tr>
+<tr>
+<td>valor_novo_online</td>
+<td>Estoque atualizado online</td>
+</tr>
+<tr>
+<td>valor_anterior_loja</td>
+<td>Estoque anterior físico</td>
+</tr>
+<tr>
+<td>valor_novo_loja</td>
+<td>Estoque atualizado físico</td>
+</tr>
+<tr>
+<td>origem</td>
+<td>Origem da alteração</td>
+</tr>
+<tr>
+<td>motivo</td>
+<td>Motivo da alteração</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="orders">Orders</h1>
+<p>Tabela principal de pedidos.</p>
+<h2 id="campos-principais_11">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_pedido</td>
+<td>Identificador</td>
+</tr>
+<tr>
+<td>id_usuario</td>
+<td>Cliente responsável</td>
+</tr>
+<tr>
+<td>id_cupom</td>
+<td>Cupom aplicado</td>
+</tr>
+<tr>
+<td>data_pedido</td>
+<td>Data da compra</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status do pedido</td>
+</tr>
+<tr>
+<td>subtotal</td>
+<td>Valor parcial</td>
+</tr>
+<tr>
+<td>valor_frete</td>
+<td>Valor do frete</td>
+</tr>
+<tr>
+<td>valor_total</td>
+<td>Valor total</td>
+</tr>
+<tr>
+<td>tipo_retirada</td>
+<td>Forma de retirada</td>
+</tr>
+<tr>
+<td>codigo_verificacao_retirada</td>
+<td>Código de retirada</td>
+</tr>
+<tr>
+<td>id_funcionario</td>
+<td>Funcionário responsável</td>
+</tr>
+<tr>
+<td>codigo_rastreamento</td>
+<td>Rastreamento</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relacionamentos_8">Relacionamentos</h2>
+<ul>
+<li>Um pedido:</li>
+<li>pertence a um cliente</li>
+<li>pode possuir cupom</li>
+<li>pode possuir pagamento</li>
+<li>possui itens</li>
+<li>pode estar relacionado a um funcionário</li>
+</ul>
+<hr />
+<h1 id="order-item">Order Item</h1>
+<p>Tabela de itens do pedido.</p>
+<h2 id="campos-principais_12">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_item_pedido</td>
+<td>Identificador</td>
+</tr>
+<tr>
+<td>id_pedido</td>
+<td>Pedido relacionado</td>
+</tr>
+<tr>
+<td>id_variante</td>
+<td>Variante comprada</td>
+</tr>
+<tr>
+<td>quantidade</td>
+<td>Quantidade adquirida</td>
+</tr>
+<tr>
+<td>preco_unitario</td>
+<td>Preço unitário</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relacionamentos_9">Relacionamentos</h2>
+<ul>
+<li>Um item pertence a um pedido.</li>
+<li>Um item referencia uma variante de produto.</li>
+</ul>
+<hr />
+<h1 id="payment">Payment</h1>
+<p>Tabela responsável pelos pagamentos.</p>
+<h2 id="campos-principais_13">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_pagamento</td>
+<td>Identificador</td>
+</tr>
+<tr>
+<td>id_pedido</td>
+<td>Pedido relacionado</td>
+</tr>
+<tr>
+<td>order_nsu</td>
+<td>Código da ordem</td>
+</tr>
+<tr>
+<td>transaction_nsu</td>
+<td>Código da transação</td>
+</tr>
+<tr>
+<td>invoice_slug</td>
+<td>Identificador da cobrança</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Valor total</td>
+</tr>
+<tr>
+<td>paid_amount</td>
+<td>Valor pago</td>
+</tr>
+<tr>
+<td>installments</td>
+<td>Parcelas</td>
+</tr>
+<tr>
+<td>capture_method</td>
+<td>Método de captura</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status do pagamento</td>
+</tr>
+<tr>
+<td>receipt_url</td>
+<td>URL do comprovante</td>
+</tr>
+<tr>
+<td>redirect_url</td>
+<td>URL de redirecionamento</td>
+</tr>
+<tr>
+<td>webhook_url</td>
+<td>URL de webhook</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Data de criação</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Data de atualização</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relacionamentos_10">Relacionamentos</h2>
+<ul>
+<li>Um pagamento pertence a um pedido.</li>
+</ul>
+<hr />
+<h1 id="coupon">Coupon</h1>
+<p>Tabela responsável pelos cupons promocionais.</p>
+<h2 id="campos-principais_14">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>numero_do_cupom</td>
+<td>Código do cupom</td>
+</tr>
+<tr>
+<td>tipo_cupom</td>
+<td>Tipo do desconto</td>
+</tr>
+<tr>
+<td>valor_desconto</td>
+<td>Valor aplicado</td>
+</tr>
+<tr>
+<td>ativo</td>
+<td>Situação do cupom</td>
+</tr>
+<tr>
+<td>data_inicio</td>
+<td>Início da validade</td>
+</tr>
+<tr>
+<td>data_fim</td>
+<td>Fim da validade</td>
+</tr>
+<tr>
+<td>uso_maximo</td>
+<td>Limite de uso</td>
+</tr>
+<tr>
+<td>nome_influenciador</td>
+<td>Influenciador relacionado</td>
+</tr>
+<tr>
+<td>usos_atuais</td>
+<td>Quantidade utilizada</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relacionamentos_11">Relacionamentos</h2>
+<ul>
+<li>Um cupom pode:</li>
+<li>ser aplicado em pedidos</li>
+<li>possuir produtos específicos</li>
+</ul>
+<hr />
+<h1 id="coupon-product">Coupon Product</h1>
+<p>Tabela associativa entre cupons e produtos.</p>
+<p>Implementa relacionamento muitos-para-muitos.</p>
+<hr />
+<h1 id="review">Review</h1>
+<p>Tabela responsável pelas avaliações dos produtos.</p>
+<h2 id="campos-principais_15">Campos principais</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cpf_cliente</td>
+<td>Cliente avaliador</td>
+</tr>
+<tr>
+<td>id_produto</td>
+<td>Produto avaliado</td>
+</tr>
+<tr>
+<td>nota</td>
+<td>Nota atribuída</td>
+</tr>
+<tr>
+<td>comentario</td>
+<td>Comentário</td>
+</tr>
+<tr>
+<td>data_avaliacao</td>
+<td>Data da avaliação</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relacionamentos_12">Relacionamentos</h2>
+<ul>
+<li>Uma avaliação pertence:</li>
+<li>a uma pessoa</li>
+<li>a um produto</li>
+</ul>
+<hr />
+<h1 id="consideracoes-arquiteturais">Considerações Arquiteturais</h1>
+<p>O modelo foi desenvolvido visando:</p>
+<ul>
+<li>Alta normalização</li>
+<li>Separação clara de responsabilidades</li>
+<li>Escalabilidade</li>
+<li>Facilidade de manutenção</li>
+<li>Integridade relacional</li>
+</ul>
+<p>Além disso, foram utilizadas tabelas associativas para representar relacionamentos muitos-para-muitos, como:</p>
+<ul>
+<li><code>product_category</code></li>
+<li><code>coupon_product</code></li>
+<li><code>catalog_image</code></li>
+</ul>
+<p>A modelagem também contempla mecanismos importantes para sistemas de marketplace, como:</p>
+<ul>
+<li>Controle de estoque</li>
+<li>Auditoria de movimentações</li>
+<li>Controle de permissões por funcionário</li>
+<li>Sistema de cupons</li>
+<li>Sistema de avaliações</li>
+<li>Integração com gateway de pagamento</li>
+</ul>
+<h2 id="historico-de-versionamento">Histórico de Versionamento</h2>
+<table>
+<thead>
+<tr>
+<th>Versão</th>
+<th>Autor</th>
+<th>Resumo</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1.6</code></td>
+<td><a href="https://github.com/leohssjr">Leonardo Sauma</a></td>
+<td>Adição do modelo físico do banco de dados</td>
+<td>25/05/2026</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../prototipo/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Protótipo">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Protótipo
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.code.annotate", "content.code.copy", "content.footnote.tooltips", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
