@@ -10,6 +10,8 @@
 - `Makefile`: atalhos para os fluxos com Docker.
 - `Dockerfile`: imagem base para executar o MkDocs em container (estágios `docs` e `quality`).
 - `compose.yaml`: orquestração local do container da documentação e dos checks.
+- `.githooks/commit-msg`: preenche os `Co-authored-by` do trio (Bruno,
+  Eduardo, Márcio); ativado com `make hooks`.
 - `scripts/check-links.sh`: build estrito + varredura de links quebrados.
 - `scripts/build-slides.sh`: gera as apresentações de sprint com o Marp.
 - `slides/`: fontes das apresentações (`template.md` é o modelo); a saída vai

@@ -4,10 +4,11 @@ COMPOSE := docker compose
 # (site estático, correções do markdownlint) não fiquem pertencendo ao root.
 HOST_USER := $(shell id -u):$(shell id -g)
 
-.PHONY: help serve build stop lint-md lint-md-fix check-links check-links-extern quality slides slides-pdf clean
+.PHONY: help hooks serve build stop lint-md lint-md-fix check-links check-links-extern quality slides slides-pdf clean
 
 help:
 	@echo "Targets disponíveis (todos rodam via Docker):"
+	@echo "  make hooks               ativa os hooks do repositório (.githooks)"
 	@echo "  make serve               sobe a documentação em http://localhost:8000"
 	@echo "  make build               gera o site estático em ./site"
 	@echo "  make stop                para o container da documentação"
@@ -19,6 +20,12 @@ help:
 	@echo "  make slides              gera as apresentações em HTML (slides/dist/)"
 	@echo "  make slides-pdf          gera as apresentações em HTML e PDF"
 	@echo "  make clean               remove containers e imagens locais"
+
+# Aponta o Git para os hooks versionados: o commit-msg preenche os
+# Co-authored-by do trio. Basta rodar uma vez por clone.
+hooks:
+	git config core.hooksPath .githooks
+	@echo "Hooks ativados a partir de .githooks/"
 
 serve:
 	$(COMPOSE) up --build docs
