@@ -1,0 +1,55 @@
+name: docs quality
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+      - '*.md'
+      - 'mkdocs.yml'
+      - 'requirements*.txt'
+      - 'Dockerfile'
+      - 'compose.yaml'
+      - 'scripts/**'
+      - '.markdownlint-cli2.jsonc'
+      - '.linkcheckerrc'
+      - '.github/workflows/quality.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - '*.md'
+      - 'mkdocs.yml'
+      - 'requirements*.txt'
+      - 'Dockerfile'
+      - 'compose.yaml'
+      - 'scripts/**'
+      - '.markdownlint-cli2.jsonc'
+      - '.linkcheckerrc'
+      - '.github/workflows/quality.yml'
+
+jobs:
+  markdownlint:
+    name: Estilo do Markdown
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: markdownlint-cli2
+        run: docker compose run --rm lint-md
+
+  links:
+    name: Links quebrados
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Falha o job: build --strict (links internos e nav do MkDocs) mais a
+      # varredura do LinkChecker no HTML gerado.
+      - name: Links internos
+        run: docker compose run --rm check-links
+
+      # Informativo: depende de sites de terceiros e de rede, então não deve
+      # bloquear o merge quando um serviço externo está fora do ar.
+      - name: Links externos (informativo)
+        continue-on-error: true
+        run: docker compose run --rm check-links ./scripts/check-links.sh --extern

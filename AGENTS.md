@@ -6,42 +6,34 @@
 - `docs/assets/`: arquivos estáticos usados pela documentação.
 - `mkdocs.yml`: configuração principal do MkDocs e navegação do site.
 - `requirements.txt`: dependências Python do projeto.
-- `Makefile`: atalhos para fluxos locais e com Docker.
-- `Dockerfile`: imagem base para executar o MkDocs em container.
-- `compose.yaml`: orquestração local do container da documentação.
+- `requirements-dev.txt`: dependências das ferramentas de qualidade (LinkChecker).
+- `Makefile`: atalhos para os fluxos com Docker.
+- `Dockerfile`: imagem base para executar o MkDocs em container (estágios `docs` e `quality`).
+- `compose.yaml`: orquestração local do container da documentação e dos checks.
+- `scripts/check-links.sh`: build estrito + varredura de links quebrados.
+- `.markdownlint-cli2.jsonc`: regras de lint do Markdown.
+- `.linkcheckerrc`: configuração do LinkChecker.
+- `.github/workflows/quality.yml`: CI de qualidade (lint + links).
 - `README.md`: instruções para pessoas do time.
 
 ## How To Run The Project
 
-### Local Python flow
+O fluxo oficial é Docker. Não há mais suporte a `.venv` no `Makefile`; rodar o
+MkDocs direto na máquina continua possível, mas não é o caminho documentado.
 
-1. Criar ou reutilizar o ambiente virtual:
-   - `make install`
-2. Rodar a documentação:
+1. Subir a documentação:
    - `make serve`
-   - ou `.venv/bin/mkdocs serve`
-3. Acessar:
-   - `http://127.0.0.1:8000`
-
-### Docker flow
-
-1. Construir e subir o container:
-   - `docker compose up --build`
-   - ou `make docker-serve`
 2. Acessar:
    - `http://localhost:8000`
 3. Parar o container:
-   - `docker compose down`
-   - ou `make docker-stop`
+   - `make stop`
 
 ## Build, Test, And Lint Commands
 
 ### Build
 
-- Gerar site estático localmente:
+- Gerar site estático em `./site`:
   - `make build`
-- Construir a imagem Docker:
-  - `make docker-build`
 
 ### Validation
 
@@ -52,8 +44,17 @@
 
 ### Lint / tests
 
-- Este repositório não possui etapa formal de lint nem suíte de testes automatizados no momento.
-- A validação mínima esperada é garantir que o MkDocs sobe sem erro e que o build estático funciona.
+- Estilo do Markdown (`markdownlint-cli2`):
+  - `make lint-md`
+  - `make lint-md-fix` corrige o que for corrigível automaticamente
+- Links quebrados (`mkdocs build --strict` + LinkChecker):
+  - `make check-links`
+  - `make check-links-extern` inclui links externos (depende de rede)
+- Ambos de uma vez:
+  - `make quality`
+- Os dois checks rodam no CI a cada Pull Request pelo workflow `docs quality`.
+  A checagem de links externos é informativa e não bloqueia o merge.
+- Não há suíte de testes automatizados neste repositório.
 
 ## Engineering Conventions
 
@@ -73,10 +74,11 @@
 
 ## Constraints And Do-Not Rules
 
-- Não remover ou quebrar o fluxo atual com `.venv` ao adicionar melhorias no fluxo Docker.
+- Não reintroduzir targets baseados em `.venv` no `Makefile`: o fluxo suportado é Docker.
 - Não editar conteúdo de documentação sem manter consistência com a navegação em `mkdocs.yml`.
 - Não versionar artefatos gerados, como `site/`.
-- Não assumir a existência de lint, CI ou testes automatizados que não estejam configurados no repositório.
+- Não desabilitar regras do markdownlint apenas para "passar" no CI: corrija o
+  conteúdo, ou justifique a exceção com comentário em `.markdownlint-cli2.jsonc`.
 - Não adicionar ferramentas pesadas de build/deploy sem necessidade explícita.
 
 ## What Done Means
@@ -86,12 +88,14 @@ Uma tarefa está concluída quando:
 - a mudança necessária foi implementada;
 - o fluxo principal afetado está documentado;
 - `make build` executa com sucesso;
-- se a tarefa envolver Docker, `docker compose config` permanece válido e o fluxo `docker compose up --build` continua funcional;
+- `make quality` passa sem erros;
+- se a tarefa envolver Docker, `docker compose config` permanece válido e o fluxo `make serve` continua funcional;
 - não há inconsistência entre `README.md`, `docs/index.md`, `Makefile` e arquivos de infraestrutura relevantes.
 
 ## Verification Checklist
 
+- `make quality`
 - `make build`
 - `docker compose config`
-- se a mudança envolver container: `docker compose up --build`
-- revisar páginas afetadas no navegador em `http://localhost:8000` ou `http://127.0.0.1:8000`
+- se a mudança envolver container: `make serve`
+- revisar páginas afetadas no navegador em `http://localhost:8000`

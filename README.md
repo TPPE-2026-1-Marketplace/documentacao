@@ -12,64 +12,67 @@ Esta documentação centraliza os principais artefatos da primeira entrega do pr
 - modelagem do banco de dados;
 - conteinerização do ambiente
 
-## Como executar localmente
+## Como executar
 
-1. Instale as dependências:
+O fluxo oficial do projeto é via Docker: não é necessário criar ambiente
+virtual nem instalar Python/MkDocs na máquina. Todos os targets do `Makefile`
+rodam em container.
 
-```bash
-make install
-```
-
-2. Inicie o servidor local do MkDocs:
+1. Suba a documentação:
 
 ```bash
-mkdocs serve
+make serve
 ```
 
-3. Acesse:
-
-```text
-http://127.0.0.1:8000
-```
-
-## Como executar com Docker
-
-1. Gere a imagem e suba o container:
-
-```bash
-docker compose up --build
-```
-
-Ou, se preferir usar o atalho do projeto:
-
-```bash
-make docker-serve
-```
-
-2. Acesse:
+1. Acesse:
 
 ```text
 http://localhost:8000
 ```
 
-3. Para parar o container:
+1. Para parar o container:
 
 ```bash
-docker compose down
+make stop
 ```
 
-Ou:
+Para gerar o site estático em `./site`:
 
 ```bash
-make docker-stop
+make build
 ```
+
+> Rodar o MkDocs direto na máquina (com `pip install -r requirements.txt`)
+> continua funcionando, mas não é mais coberto pelo `Makefile`.
+
+## Controle de qualidade
+
+A documentação tem dois checks automáticos, executados no CI a cada Pull
+Request (workflow `docs quality`) e disponíveis localmente:
+
+| Comando | O que faz |
+| --- | --- |
+| `make lint-md` | Valida estilo e consistência do Markdown com o `markdownlint-cli2` |
+| `make lint-md-fix` | Corrige automaticamente o que for corrigível (espaçamento, listas, tabelas) |
+| `make check-links` | Roda `mkdocs build --strict` e varre o HTML gerado com o `LinkChecker` |
+| `make check-links-extern` | Igual ao anterior, incluindo links externos (depende de rede) |
+| `make quality` | Executa `lint-md` + `check-links` |
+
+As regras do lint ficam em `.markdownlint-cli2.jsonc` e a configuração do
+LinkChecker em `.linkcheckerrc`. A checagem de links externos roda no CI de
+forma informativa: ela não bloqueia o merge, porque depende de serviços de
+terceiros.
 
 ## Como funciona a conteinerização
 
-- o `Dockerfile` cria uma imagem Python com as dependências do `requirements.txt`;
+- o `Dockerfile` tem dois estágios: `docs` (MkDocs, a partir do
+  `requirements.txt`) e `quality` (adiciona o LinkChecker, do
+  `requirements-dev.txt`);
 - o `compose.yaml` publica a porta `8000` e monta o diretório do projeto em `/app`;
 - esse volume permite editar arquivos em `docs/` e ver as mudanças com hot reload no MkDocs;
-- se `requirements.txt` mudar, execute novamente `docker compose up --build`.
+- os serviços `lint-md` e `check-links` ficam no profile `quality`, então não
+  sobem junto com `make serve` — são executados sob demanda;
+- se `requirements.txt` mudar, execute novamente `make serve` (ele reconstrói a imagem).
 
 ## Estrutura do repositório
 
@@ -81,10 +84,16 @@ make docker-stop
 |   |-- user_history.md
 |   |-- non_functional_requirements.md
 |   `-- user_history/
+|-- scripts/
+|   `-- check-links.sh
 |-- mkdocs.yml
 |-- Dockerfile
 |-- compose.yaml
 |-- requirements.txt
+|-- requirements-dev.txt
+|-- .markdownlint-cli2.jsonc
+|-- .linkcheckerrc
+|-- Makefile
 `-- README.md
 ```
 

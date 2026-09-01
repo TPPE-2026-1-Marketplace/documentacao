@@ -12,70 +12,57 @@ Esta documentação centraliza os principais artefatos da primeira entrega do pr
 - modelagem do banco de dados;
 - conteinerização do ambiente
 
-## Como executar localmente
+## Como executar
 
-1. Instale as dependências:
+O fluxo oficial do projeto é via Docker: não é preciso instalar Python ou
+MkDocs na máquina, nem criar ambiente virtual.
 
-```bash
-make install
-```
-
-2. Inicie o servidor local do MkDocs:
+1. Suba a documentação:
 
 ```bash
-mkdocs serve
+make serve
 ```
 
-3. Acesse:
-
-```text
-http://127.0.0.1:8000
-```
-
-## Como executar com Docker
-
-1. Construa a imagem e suba o container:
-
-```bash
-docker compose up --build
-```
-
-2. Acesse a documentação:
+1. Acesse a documentação:
 
 ```text
 http://localhost:8000
 ```
 
-3. Para encerrar:
+1. Para encerrar:
 
 ```bash
-docker compose down
+make stop
 ```
 
-## Comparando os dois fluxos
+Como o projeto é montado como volume no container, alterações em `docs/` e
+`mkdocs.yml` são refletidas no navegador com hot reload. Se mudar o
+`requirements.txt`, rode `make serve` novamente para reconstruir a imagem.
 
-### Fluxo com ambiente virtual
+## Controle de qualidade
 
-- cria uma `.venv` local;
-- instala os pacotes diretamente no seu sistema;
-- executa `mkdocs serve` a partir do ambiente Python do projeto.
+Antes de abrir um Pull Request, rode os checks que também são executados no CI:
 
-### Fluxo com Docker
+```bash
+make quality
+```
 
-- cria uma imagem isolada com Python e MkDocs;
-- sobe um container com a porta `8000`;
-- monta o projeto como volume, então alterações em `docs/` e `mkdocs.yml` continuam refletindo no navegador.
+| Comando | O que faz |
+| --- | --- |
+| `make lint-md` | Valida estilo e consistência do Markdown com o `markdownlint-cli2` |
+| `make lint-md-fix` | Corrige automaticamente o que for corrigível |
+| `make check-links` | Roda `mkdocs build --strict` e varre o HTML gerado com o `LinkChecker` |
+| `make check-links-extern` | Igual ao anterior, incluindo links externos |
 
 ## Passo a passo recomendado
 
 1. Entre na pasta do projeto.
-2. Rode `docker compose up --build`.
+2. Rode `make serve`.
 3. Abra `http://localhost:8000`.
 4. Edite os arquivos em `docs/`.
 5. Veja o hot reload no navegador.
-6. Ao terminar, rode `docker compose down`.
-
-Se mudar o `requirements.txt`, reconstrua a imagem com `docker compose up --build`.
+6. Rode `make quality` antes de abrir o PR.
+7. Ao terminar, rode `make stop`.
 
 ## Estrutura do repositório
 
@@ -87,10 +74,16 @@ Se mudar o `requirements.txt`, reconstrua a imagem com `docker compose up --buil
 |   |-- user_history.md
 |   |-- non_functional_requirements.md
 |   `-- user_history/
+|-- scripts/
+|   `-- check-links.sh
 |-- mkdocs.yml
 |-- Dockerfile
 |-- compose.yaml
 |-- requirements.txt
+|-- requirements-dev.txt
+|-- .markdownlint-cli2.jsonc
+|-- .linkcheckerrc
+|-- Makefile
 `-- README.md
 ```
 

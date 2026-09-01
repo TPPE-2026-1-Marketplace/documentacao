@@ -9,3 +9,4 @@ env
 
 # MkDocs build output
 site
+.site-check

@@ -4,12 +4,30 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: docs
     container_name: dk-fashion-docs
     ports:
       - "8000:8000"
     volumes:
       - .:/app
-    command: mkdocs serve --dev-addr=0.0.0.0:8000
 
-volumes:
-  app:
+  # Serviços de qualidade: rodam sob demanda com `docker compose run` (ou pelos
+  # targets do Makefile) e não sobem junto com `docker compose up`.
+  lint-md:
+    image: davidanson/markdownlint-cli2:v0.23.2
+    working_dir: /workdir
+    volumes:
+      - .:/workdir
+    profiles:
+      - quality
+
+  check-links:
+    image: dk-fashion-docs-quality
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quality
+    volumes:
+      - .:/app
+    profiles:
+      - quality

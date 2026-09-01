@@ -1,0 +1,36 @@
+{
+  // Regras: https://github.com/DavidAnson/markdownlint/blob/main/doc/md001.md
+  "config": {
+    "default": true,
+
+    // Documentação em português com frases longas; comprimento de linha
+    // não é um sinal útil de qualidade aqui.
+    "MD013": false,
+
+    // README usa uma tabela HTML para os cards de contribuidores, e o tema
+    // Material for MkDocs também depende de HTML embutido em várias páginas.
+    "MD033": false,
+
+    // Só reclama de heading duplicado entre irmãos do mesmo pai, permitindo
+    // subtítulos repetidos (ex.: "Campos principais") em seções diferentes.
+    "MD024": { "siblings_only": true },
+
+    // Permite tanto "1.,2.,3." quanto listas que reiniciam em "1." a cada
+    // bloco, os dois estilos já usados na documentação.
+    "MD029": { "style": "one_or_ordered" },
+
+    // Alinhamento visual dos "|" em tabelas é cosmético e não muda o HTML
+    // renderizado; não vale a pena reformatar tabelas com texto acentuado
+    // só para satisfazer a regra.
+    "MD060": false
+  },
+  "globs": [
+    "docs/**/*.md",
+    "*.md"
+  ],
+  "ignores": [
+    "site/**",
+    ".venv/**",
+    "node_modules/**"
+  ]
+}
