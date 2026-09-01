@@ -1,31 +1,37 @@
 # Busca, Navegação e Atendimento
 
 ## US03 - Página inicial
+
 **Como** cliente,  
 **quero** ter acesso a uma página inicial,  
 **para que** me sejam expostos os melhores produtos, categorias e promoções.
 
 ## US04 - Filtrar produtos por critérios de busca
+
 **Como** cliente,  
 **quero** que, quando eu for buscar um produto, eu possa filtrar por tamanho, cor e faixa de preço,  
 **para que** eu selecione melhor os produtos que quero visualizar.
 
 ## US05 - Visualizar detalhes de um produto
+
 **Como** cliente,  
 **quero** visualizar uma página exclusiva do produto com informações detalhadas,  
 **para que** eu possa avaliar se realmente quero comprá-lo.
 
 ### Regras de negócio
+
 - A página de produto deve exibir fotos, tamanhos e cores disponíveis.
 - A visualização de fotos deve ocorrer por carrossel.
 - Deve existir tabela de medidas por tamanho para apoiar a escolha do cliente.
 
 ## US06 - Adicionar ao carrinho
+
 **Como** cliente,  
 **quero** poder adicionar o produto ao carrinho selecionando cor e tamanho disponíveis,  
 **para que** eu compre o item com as especificações desejadas.
 
 ## US10 - Incluir redirecionamento para o WhatsApp
+
 **Como** cliente,  
 **quero** clicar em um botão de suporte do WhatsApp e ser redirecionado para o WhatsApp da loja,  
 **para que** eu possa conversar com as atendentes da loja física para sanar dúvidas sobre os produtos.

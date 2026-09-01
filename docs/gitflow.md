@@ -145,7 +145,6 @@ git checkout -b hotfix/descricao-curta
 - relacionar commits e PRs com as issues;
 - atualizar a documentação quando o fluxo ou o processo de release mudar.
 
-
 ## Histórico de Versionamento
 
 | Versão | Autor | Resumo | Data |

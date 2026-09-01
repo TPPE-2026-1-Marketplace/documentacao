@@ -12,6 +12,7 @@ Obrigado por considerar contribuir com este projeto. Este documento define as di
    ```bash
    git checkout -b feat/nome-da-feature
    ```
+
 3. Realize suas alterações
 4. Faça commits seguindo o padrão definido
 5. Envie para o seu fork:
@@ -19,8 +20,8 @@ Obrigado por considerar contribuir com este projeto. Este documento define as di
    ```bash
    git push origin feat/nome-da-feature
    ```
-6. Abra um Pull Request (PR)
 
+6. Abra um Pull Request (PR)
 
 ## Padrão de commits (OBRIGATÓRIO)
 
@@ -28,7 +29,7 @@ Este projeto utiliza o padrão **Conventional Commits**.
 
 Formato obrigatório:
 
-```
+```text
 <type>(<optional scope>): <description>
 
 [optional body]
@@ -38,7 +39,6 @@ Formato obrigatório:
 
 Esse padrão melhora legibilidade, histórico e permite automação como geração de changelog e versionamento semântico.
 
-
 ### Estrutura
 
 * **type** → tipo da mudança (obrigatório)
@@ -46,7 +46,6 @@ Esse padrão melhora legibilidade, histórico e permite automação como geraç�
 * **description** → descrição curta e clara
 * **body** → explicação detalhada (opcional)
 * **footer** → breaking changes / issues (opcional)
-
 
 ### Tipos de commit
 
@@ -86,7 +85,6 @@ perf(database): optimize query execution
 chore: update dependencies
 ```
 
-
 ### Regras importantes
 
 * Use **inglês** nos commits
@@ -98,7 +96,6 @@ chore: update dependencies
   * `fix bug`
 * Prefira commits pequenos e focados
 
-
 ## Breaking Changes
 
 Para mudanças incompatíveis:
@@ -109,10 +106,9 @@ feat(api)!: change authentication flow
 
 Ou no footer:
 
-```
+```text
 BREAKING CHANGE: authentication now requires token
 ```
-
 
 ## Pull Requests
 
@@ -121,20 +117,17 @@ BREAKING CHANGE: authentication now requires token
 * Inclua evidências (logs, prints, testes)
 * Garanta que o código compila/testa corretamente
 
-
 ## Testes
 
 * Novas features devem incluir testes
 * Bugs corrigidos devem ter testes associados
 * Evite quebrar testes existentes
 
-
 ## Padrões de código
 
 * Siga o padrão do projeto
 * Código legível > código complexo
 * Evite duplicação
-
 
 ## Boas práticas
 
@@ -145,13 +138,11 @@ BREAKING CHANGE: authentication now requires token
 * Use `.gitignore` corretamente
 * Sempre atualize documentação quando necessário
 
-
 ## Código de conduta
 
 * Seja respeitoso
 * Feedback construtivo
 * Colaboração acima de ego
-
 
 ## Observação final
 
