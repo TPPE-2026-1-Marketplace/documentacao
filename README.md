@@ -58,6 +58,21 @@ Request (workflow `docs quality`) e disponíveis localmente:
 | `make check-links-extern` | Igual ao anterior, incluindo links externos (depende de rede) |
 | `make quality` | Executa `lint-md` + `check-links` |
 
+## Apresentações de sprint
+
+Os slides são gerados com [Marp](https://marp.app/) a partir dos arquivos em
+`slides/`, também em container:
+
+```bash
+cp slides/template.md slides/01.md   # edite o conteúdo da sprint
+make slides                          # HTML em slides/dist/
+make slides-pdf                      # HTML + PDF
+```
+
+O script `scripts/build-slides.sh` aceita um deck específico
+(`./scripts/build-slides.sh slides/01.md`) e o formato `--pptx`. A saída em
+`slides/dist/` não é versionada.
+
 As regras do lint ficam em `.markdownlint-cli2.jsonc` e a configuração do
 LinkChecker em `.linkcheckerrc`. A checagem de links externos roda no CI de
 forma informativa: ela não bloqueia o merge, porque depende de serviços de

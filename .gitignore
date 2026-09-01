@@ -10,3 +10,6 @@ env
 # MkDocs build output
 site
 .site-check
+
+# Apresentações geradas pelo Marp
+slides/dist

@@ -11,6 +11,11 @@
 - `Dockerfile`: imagem base para executar o MkDocs em container (estágios `docs` e `quality`).
 - `compose.yaml`: orquestração local do container da documentação e dos checks.
 - `scripts/check-links.sh`: build estrito + varredura de links quebrados.
+- `scripts/build-slides.sh`: gera as apresentações de sprint com o Marp.
+- `slides/`: fontes das apresentações (`template.md` é o modelo); a saída vai
+  para `slides/dist/`, que não é versionada.
+- `docs/sprints.md`: mapa das sprints; `docs/sprints/template.md` é o modelo de
+  relatório, organizado por clans (Infra/DE, Design/K, Front/G).
 - `.markdownlint-cli2.jsonc`: regras de lint do Markdown.
 - `.linkcheckerrc`: configuração do LinkChecker.
 - `.github/workflows/quality.yml`: CI de qualidade (lint + links).
@@ -52,6 +57,8 @@ MkDocs direto na máquina continua possível, mas não é o caminho documentado.
   - `make check-links-extern` inclui links externos (depende de rede)
 - Ambos de uma vez:
   - `make quality`
+- Apresentações de sprint (Marp):
+  - `make slides` / `make slides-pdf`
 - Os dois checks rodam no CI a cada Pull Request pelo workflow `docs quality`.
   A checagem de links externos é informativa e não bloqueia o merge.
 - Não há suíte de testes automatizados neste repositório.

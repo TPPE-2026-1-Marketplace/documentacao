@@ -31,3 +31,16 @@ services:
       - .:/app
     profiles:
       - quality
+
+  # Geração das apresentações de sprint (ver scripts/build-slides.sh).
+  slides:
+    image: marpteam/marp-cli:v4.5.0
+    init: true
+    volumes:
+      - .:/home/marp/app
+    environment:
+      # A imagem usa esta variável para gravar a saída com o dono correto;
+      # o script exporta o UID:GID do host antes de chamar o compose.
+      MARP_USER: "${MARP_USER:-1000:1000}"
+    profiles:
+      - slides

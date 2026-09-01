@@ -4,7 +4,7 @@ COMPOSE := docker compose
 # (site estático, correções do markdownlint) não fiquem pertencendo ao root.
 HOST_USER := $(shell id -u):$(shell id -g)
 
-.PHONY: help serve build stop lint-md lint-md-fix check-links check-links-extern quality clean
+.PHONY: help serve build stop lint-md lint-md-fix check-links check-links-extern quality slides slides-pdf clean
 
 help:
 	@echo "Targets disponíveis (todos rodam via Docker):"
@@ -16,6 +16,8 @@ help:
 	@echo "  make check-links         build --strict + checagem de links internos"
 	@echo "  make check-links-extern  idem, incluindo links externos (usa rede)"
 	@echo "  make quality             roda lint-md + check-links"
+	@echo "  make slides              gera as apresentações em HTML (slides/dist/)"
+	@echo "  make slides-pdf          gera as apresentações em HTML e PDF"
 	@echo "  make clean               remove containers e imagens locais"
 
 serve:
@@ -40,6 +42,12 @@ check-links-extern:
 	$(COMPOSE) run --rm check-links ./scripts/check-links.sh --extern
 
 quality: lint-md check-links
+
+slides:
+	./scripts/build-slides.sh
+
+slides-pdf:
+	./scripts/build-slides.sh --pdf
 
 clean:
 	$(COMPOSE) down --rmi local --remove-orphans
