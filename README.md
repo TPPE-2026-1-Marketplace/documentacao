@@ -89,10 +89,44 @@ terceiros.
   sobem junto com `make serve` — são executados sob demanda;
 - se `requirements.txt` mudar, execute novamente `make serve` (ele reconstrói a imagem).
 
+## Padrão de commits
+
+Os commits seguem [Conventional Commits](https://www.conventionalcommits.org/pt-br/)
+(`feat:`, `fix:`, `docs:`, `ci:`, `style:`...), com o assunto em português e no
+imperativo.
+
+Como Bruno, Eduardo e Márcio trabalham em par/trio, o repositório tem um hook
+que preenche os `Co-authored-by` sozinho: quem commita entra como autor e os
+outros dois entram como co-autores. Ative uma vez por clone:
+
+```bash
+make hooks   # equivale a: git config core.hooksPath .githooks
+```
+
+Feito isso, um `git commit -m "feat: nova página"` do Márcio vira:
+
+```text
+feat: nova página
+
+Co-authored-by: Bruno Braganca <brunobragancadosreis@gmail.com>
+Co-authored-by: Eduardo Sandes <eduardo.sandes6@gmail.com>
+```
+
+Detalhes:
+
+- o hook (`.githooks/commit-msg`) identifica a pessoa pelo `user.email` do
+  clone, então cada um precisa ter o `git config user.email` correto — o
+  endereço `@users.noreply.github.com` também é reconhecido;
+- commits de quem não é do trio passam sem alteração;
+- co-autor escrito à mão não é duplicado;
+- `git commit --no-verify` pula o hook.
+
 ## Estrutura do repositório
 
 ```text
 .
+|-- .githooks/
+|   `-- commit-msg
 |-- docs/
 |   |-- index.md
 |   |-- contributing_guidelines.md
