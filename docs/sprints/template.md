@@ -1,9 +1,9 @@
 # Relatório de Contribuição – Sprint X
 
-**Disciplina:** Gestão de Configuração e Evolução de Software
-**Equipe:** \[Nome/Identificação da equipe]
-**Comunidade/Projeto de Software Livre:** [TPPE-2026-1-Marketplace](https://github.com/orgs/TPPE-2026-1-Marketplace/repositories)
-**Período da Sprint:** \[Data início – Data fim]
+* **Disciplina:** Gestão de Configuração e Evolução de Software
+* **Equipe:** \[Nome/Identificação da equipe]
+* **Comunidade/Projeto de Software Livre:** [TPPE-2026-1-Marketplace](https://github.com/orgs/TPPE-2026-1-Marketplace/repositories)
+* **Período da Sprint:** \[Data início – Data fim]
 
 ---
 
