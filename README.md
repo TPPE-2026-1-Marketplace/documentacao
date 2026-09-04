@@ -22,6 +22,10 @@ rodam em container.
 
 ```bash
 make serve
+
+# ou
+
+make serve-background # sobe como Daemon
 ```
 
 1. Acesse:

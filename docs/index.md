@@ -21,6 +21,10 @@ MkDocs na máquina, nem criar ambiente virtual.
 
 ```bash
 make serve
+
+# ou
+
+make serve-background # sobe como Daemon
 ```
 
 1. Acesse a documentação:

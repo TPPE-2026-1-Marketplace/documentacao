@@ -10,6 +10,7 @@ help:
 	@echo "Targets disponíveis (todos rodam via Docker):"
 	@echo "  make hooks               ativa os hooks do repositório (.githooks)"
 	@echo "  make serve               sobe a documentação em http://localhost:8000"
+	@echo "  make serve-background    sobe a documentação em background (libera o terminal)"
 	@echo "  make build               gera o site estático em ./site"
 	@echo "  make stop                para o container da documentação"
 	@echo "  make lint-md             valida o estilo do Markdown (markdownlint-cli2)"
@@ -29,6 +30,9 @@ hooks:
 
 serve:
 	$(COMPOSE) up --build docs
+
+serve-background:
+	$(COMPOSE) up --build -d docs 
 
 build:
 	$(COMPOSE) run --rm --no-deps --user $(HOST_USER) docs mkdocs build --strict
