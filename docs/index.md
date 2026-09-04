@@ -87,7 +87,7 @@ make quality
 `-- README.md
 ```
 
-## Equipe
+## Equipe TPPE (26.1)
 
 <table>
   <tr>
@@ -155,6 +155,80 @@ make quality
     <td></td>
   </tr>
 </table>
+
+## Equipe GCES (26.2) - Em atividade
+
+<table> <tr> 
+
+<td align="center">
+  <a href="https://github.com/luluaroeira">
+    <img src="https://github.com/luluaroeira.png?size=160" width="120" alt="Foto de Ana Luiza Komatsu Aroeira"><br>
+    <strong>Ana Luiza Komatsu</strong>
+  </a>
+  <br>
+  <a href="https://github.com/luluaroeira">github.com/luluaroeira</a>
+</td>
+
+<td align="center">
+  <a href="https://github.com/Ana-Luiza-SC">
+    <img src="https://github.com/Ana-Luiza-SC.png?size=160" width="120" alt="Foto de Ana Luiza Soares de Carvalho"><br>
+    <strong>Ana Luiza Soares</strong>
+  </a>
+  <br>
+  <a href="https://github.com/Ana-Luiza-SC">github.com/Ana-Luiza-SC</a>
+</td>
+
+<td align="center"> <a href="https://github.com/BrunoBReis"> <img src="https://github.com/BrunoBReis.png?size=160" width="120" alt="Foto de Bruno Bragança"><br> <strong>Bruno Bragança</strong> </a> <br> <a href="https://github.com/BrunoBReis">github.com/BrunoBReis</a> </td>
+
+</tr>
+
+<tr> 
+
+<td align="center">
+  <a href="https://github.com/DiceRunner714">
+    <img src="https://github.com/DiceRunner714.png?size=160" width="120" alt="Foto de Eduardo Matheus dos Santos Sandes"><br>
+    <strong>Eduardo Matheus</strong>
+  </a>
+  <br>
+  <a href="https://github.com/DiceRunner714">github.com/DiceRunner714</a>
+</td>
+
+<td align="center">
+  <a href="https://github.com/SAnjos3">
+    <img src="https://github.com/SAnjos3.png?size=160" width="120" alt="Foto de Gabriel Soares dos Anjos"><br>
+    <strong>Gabriel Soares</strong>
+  </a>
+  <br>
+  <a href="https://github.com/SAnjos3">github.com/SAnjos3</a>
+</td>
+
+<td align="center"> <a href="https://github.com/leohssjr"> <img src="https://github.com/leohssjr.png?size=160" width="120" alt="Foto de Leonardo Henrique Sobral Sauma Junior"><br> <strong>Leonardo Henrique</strong> </a> <br> <a href="https://github.com/leohssjr">github.com/leohssjr</a> </td>
+
+</tr>
+
+<tr> 
+
+<td align="center">
+  <a href="https://github.com/DeM4rcio">
+    <img src="https://github.com/DeM4rcio.png?size=160" width="120" alt="Foto de Márcio Henrique"><br>
+    <strong>Márcio Henrique</strong>
+  </a>
+  <br>
+  <a href="https://github.com/DeM4rcio">github.com/DeM4rcio</a>
+</td>
+
+<td align="center">
+  <a href="https://github.com/MVConsorte">
+    <img src="https://github.com/MVConsorte.png?size=160" width="120" alt="Foto de Mateus Villela"><br>
+    <strong>Mateus Villela</strong>
+  </a>
+  <br>
+  <a href="https://github.com/MVConsorte">github.com/MVConsorte</a>
+</td>
+
+<td align="center"> <a href="https://github.com/redjsun"> <img src="https://github.com/redjsun.png?size=160" width="120" alt="Foto de Yzabella Miranda Pimenta"><br> <strong>Yzabella Miranda</strong> </a> <br> <a href="https://github.com/redjsun">github.com/redjsun</a> </td>
+
+</tr> </table>
 
 ## Tecnologias utilizadas
 
