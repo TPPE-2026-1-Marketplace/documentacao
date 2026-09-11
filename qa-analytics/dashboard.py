@@ -27,9 +27,15 @@ st.set_page_config(
 DATA_DIR = os.path.join(os.path.dirname(__file__), "Analytics/data")
 
 REPOS_LANGUAGE = {
-    "Front": "ts",
-    "Back": "ts",
+    "MarketPlace-Frontend": "ts",
+    "MarketPlace-Backend": "ts",
 }
+
+SONAR_FILENAME_RE = re.compile(
+    r"TPPE-2026\.1-Marketplace-(?P<repo>.+?)-"
+    r"(?P<datetime>\d{2}-\d{2}-\d{4}-\d{2}-\d{2}-\d{2})-"
+    r"(?P<version>.+)\.json"
+)
 
 METRIC_LIST = [
     "files", "functions", "complexity", "comment_lines_density",
@@ -97,20 +103,19 @@ def generate_component_df(metrics_list, file_data, lang_ext):
 
 @st.cache_data
 def load_sonar_data() -> pd.DataFrame:
-    sonar_files = glob(os.path.join(DATA_DIR, "TPPE-2026.1*.json"))
+    # filename: TPPE-2026.1-Marketplace-<Repo>-<datetime>-<version>.json
+    sonar_files = glob(os.path.join(DATA_DIR, "TPPE-2026.1-Marketplace-*.json"))
     if not sonar_files:
         return pd.DataFrame()
 
     frames = []
     for path in sonar_files:
         base = os.path.basename(path)
-        parts = base.replace(".json", "").split("-")
-        # filename: fga-eps-mds-2026.1-MeasureSoftGram-<Repo>-<datetime>-<version>
-        try:
-            repo_short = parts[5]
-            lang_ext = REPOS_LANGUAGE.get(repo_short, "py")
-        except IndexError:
-            lang_ext = "py"
+        match = SONAR_FILENAME_RE.match(base)
+        if not match:
+            continue
+        repo_name = match.group("repo")
+        lang_ext = REPOS_LANGUAGE.get(repo_name, "ts")
 
         raw = unmarshall(path)
         file_data = metric_per_file(raw)
@@ -118,13 +123,9 @@ def load_sonar_data() -> pd.DataFrame:
         if df.empty:
             continue
 
-        df["filename"] = base
-        aux = df["filename"].str.extract(
-            r"fga-eps-mds-[\w\.]+-MeasureSoftGram-(\w+)-(\d{2}-\d{2}-\d{4}-\d{2}-\d{2}-\d{2})-(.*?)\.json"
-        )
-        df["repository"] = aux[0]
-        df["datetime"] = aux[1]
-        df["version"] = aux[2]
+        df["repository"] = repo_name
+        df["datetime"] = match.group("datetime")
+        df["version"] = match.group("version")
         frames.append(df)
 
     if not frames:
@@ -716,14 +717,6 @@ def build_gantt_df(sprint_df: pd.DataFrame, us_status: dict, today: datetime.dat
 # ---------------------------------------------------------------------------
 # UI
 # ---------------------------------------------------------------------------
-
-_logo_col, _title_col = st.columns([1, 8])
-with _logo_col:
-    st.image(os.path.join(os.path.dirname(__file__), "logo.svg"), width=72)
-with _title_col:
-    st.title("MeasureSoftGram – Dashboard Gerencial")
-    st.caption("Qualidade interna e produtividade do time por repositório")
-
 # ── Tema / CSS global ─────────────────────────────────────────────────────────
 st.markdown("""
 <style>
