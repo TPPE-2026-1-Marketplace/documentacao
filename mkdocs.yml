@@ -99,6 +99,8 @@ markdown_extensions:
 # Page tree
 nav:
   - Home: index.md
+  - Reuniões:
+      - 26/08/2026: atas_reuniao/ata_26_08_2026.md
   - Entregas: releases.md
   - Guia de Contribuição: contributing_guidelines.md
   - Gitflow do Projeto: gitflow.md
