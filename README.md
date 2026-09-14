@@ -137,6 +137,9 @@ Detalhes:
 |   |-- user_history.md
 |   |-- non_functional_requirements.md
 |   `-- user_history/
+|-- qa-analytics/
+|   |-- dashboard.py
+|   `-- requirements.txt
 |-- scripts/
 |   `-- check-links.sh
 |-- mkdocs.yml

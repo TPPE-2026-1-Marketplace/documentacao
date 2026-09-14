@@ -5,7 +5,10 @@
 - `docs/`: conteúdo da documentação em Markdown.
 - `docs/assets/`: arquivos estáticos usados pela documentação.
 - `mkdocs.yml`: configuração principal do MkDocs e navegação do site.
-- `requirements.txt`: dependências Python do projeto.
+- `requirements.txt`: dependências Python da documentação (MkDocs); instalado
+  na imagem `docs` e no CI.
+- `qa-analytics/requirements.txt`: dependências do dashboard de QA
+  (Streamlit), instaladas à parte.
 - `requirements-dev.txt`: dependências das ferramentas de qualidade (LinkChecker).
 - `Makefile`: atalhos para os fluxos com Docker.
 - `Dockerfile`: imagem base para executar o MkDocs em container (estágios `docs` e `quality`).
