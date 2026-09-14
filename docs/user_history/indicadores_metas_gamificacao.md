@@ -1,16 +1,19 @@
 # Indicadores, Metas e Gamificação
 
 ## US21 - Adicionar meta
+
 **Como** administrador,  
 **quero** poder adicionar meta de venda do mês,  
 **para que** quando o vendedor atingi-la, receba uma taxa adicional de comissão.
 
 ## US25 - Exibir ranking dos vendedores
+
 **Como** administrador, vendedor ou caixa,  
 **quero** visualizar um ranking dos vendedores que estão vendendo mais,  
 **para que** a equipe de vendas se sinta motivada e as metas sejam acompanhadas em tempo real.
 
 ## US26 - Exibir barras de progresso de metas
+
 **Como** administrador,  
 **quero** visualizar barras de progresso de metas individuais e coletivas no painel administrativo,  
 **para que** eu possa monitorar o desempenho da equipe em tempo real e tomar decisões baseadas em dados.

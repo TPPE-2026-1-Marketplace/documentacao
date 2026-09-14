@@ -1,0 +1,9 @@
+# Configuração do LinkChecker (usada por scripts/check-links.sh).
+#
+# O LinkChecker encerra com status de erro tanto para erros quanto para
+# warnings. Redirecionamentos são normais e esperados (ex.: as fotos de
+# perfil em github.com/<user>.png redirecionam para avatars.githubusercontent.com),
+# então ignoramos esse warning específico em vez de silenciar todos - assim
+# warnings realmente úteis, como âncoras inexistentes, continuam falhando.
+[filtering]
+ignorewarnings=http-redirected

@@ -1,11 +1,13 @@
 # Catálogo e Modelagem
 
 ## US01 - Registrar produto
+
 **Como** gerente,  
 **quero** poder adicionar as características do produto,  
 **para que** eu possa salvar as características do produto que está em estoque.
 
 ### Regras de negócio
+
 - Devo poder adicionar as medidas para cada tamanho em centímetros para as partes de busto, cintura, quadril, comprimento, manga e pulso .
 - É preciso especificar a quantidade de vestido em estoque para o presencial e para o online para evitar compras simultâneas do mesmo produto.
 

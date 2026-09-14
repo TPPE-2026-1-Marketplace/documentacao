@@ -2,7 +2,6 @@
 
 Este documento organiza os pontos previstos para cada entrega do projeto.
 
-
 ## Primeira entrega
 
 **Período:** 27/04 a 29/04
@@ -10,6 +9,7 @@ Este documento organiza os pontos previstos para cada entrega do projeto.
 ### Itens previstos
 
 #### **Backlog**
+
 #### **Protótipo de alta fidelidade interativo**
 
 - deve ser feito no Figma;
@@ -98,7 +98,6 @@ Este documento organiza os pontos previstos para cada entrega do projeto.
 
 - a ideia é pegar o site em deploy e executar os testes a partir dele;
 - isso também pode ser usado na apresentação.
-
 
 ## Observações gerais
 

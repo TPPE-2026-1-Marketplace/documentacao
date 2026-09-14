@@ -1,54 +1,64 @@
-PYTHON := python3
-VENV := .venv
-PIP := $(VENV)/bin/pip
-MKDOCS := $(VENV)/bin/mkdocs
-STAMP := $(VENV)/.installed
+COMPOSE := docker compose
 
-.PHONY: help install serve build clean rebuild docker-build docker-serve docker-stop docker-clean
+# Roda os containers com o usuário do host para que os arquivos gerados
+# (site estático, correções do markdownlint) não fiquem pertencendo ao root.
+HOST_USER := $(shell id -u):$(shell id -g)
+
+.PHONY: help hooks serve build stop lint-md lint-md-fix check-links check-links-extern quality slides slides-pdf clean
 
 help:
-	@echo "Targets disponíveis:"
-	@echo "  make install  -> instala dependências (somente se necessário)"
-	@echo "  make serve    -> roda mkdocs serve (rápido)"
-	@echo "  make build    -> gera site estático"
-	@echo "  make clean    -> remove .venv"
-	@echo "  make rebuild  -> recria tudo do zero"
-	@echo "  make docker-build -> gera a imagem Docker"
-	@echo "  make docker-serve -> sobe a documentação em container"
-	@echo "  make docker-stop  -> para o container da documentação"
-	@echo "  make docker-clean -> remove container e imagem local"
+	@echo "Targets disponíveis (todos rodam via Docker):"
+	@echo "  make hooks               ativa os hooks do repositório (.githooks)"
+	@echo "  make serve               sobe a documentação em http://localhost:8000"
+	@echo "  make serve-background    sobe a documentação em background (libera o terminal)"
+	@echo "  make build               gera o site estático em ./site"
+	@echo "  make stop                para o container da documentação"
+	@echo "  make lint-md             valida o estilo do Markdown (markdownlint-cli2)"
+	@echo "  make lint-md-fix         corrige automaticamente o que for corrigível"
+	@echo "  make check-links         build --strict + checagem de links internos"
+	@echo "  make check-links-extern  idem, incluindo links externos (usa rede)"
+	@echo "  make quality             roda lint-md + check-links"
+	@echo "  make slides              gera as apresentações em HTML (slides/dist/)"
+	@echo "  make slides-pdf          gera as apresentações em HTML e PDF"
+	@echo "  make clean               remove containers e imagens locais"
 
-# Cria o ambiente virtual apenas se não existir
-$(VENV):
-	$(PYTHON) -m venv $(VENV)
-
-# Instala dependências apenas se requirements.txt mudou
-$(STAMP): requirements.txt | $(VENV)
-	$(PIP) install --upgrade pip
-	$(PIP) install -r requirements.txt
-	touch $(STAMP)
-
-install: $(STAMP)
+# Aponta o Git para os hooks versionados: o commit-msg preenche os
+# Co-authored-by do trio. Basta rodar uma vez por clone.
+hooks:
+	git config core.hooksPath .githooks
+	@echo "Hooks ativados a partir de .githooks/"
 
 serve:
-	$(MKDOCS) serve
+	$(COMPOSE) up --build docs
+
+serve-background:
+	$(COMPOSE) up --build -d docs
 
 build:
-	$(MKDOCS) build
+	$(COMPOSE) run --rm --no-deps --user $(HOST_USER) docs mkdocs build --strict
+
+stop:
+	$(COMPOSE) down
+
+lint-md:
+	$(COMPOSE) run --rm lint-md
+
+lint-md-fix:
+	$(COMPOSE) run --rm --user $(HOST_USER) lint-md --fix
+
+check-links:
+	$(COMPOSE) run --rm check-links
+
+check-links-extern:
+	$(COMPOSE) run --rm check-links ./scripts/check-links.sh --extern
+
+quality: lint-md check-links
+
+slides:
+	./scripts/build-slides.sh
+
+slides-pdf:
+	./scripts/build-slides.sh --pdf
 
 clean:
-	rm -rf $(VENV)
-
-rebuild: clean install
-
-docker-build:
-	docker compose build
-
-docker-serve:
-	docker compose up --build
-
-docker-stop:
-	docker compose down
-
-docker-clean:
-	docker compose down --rmi local
+	$(COMPOSE) down --rmi local --remove-orphans

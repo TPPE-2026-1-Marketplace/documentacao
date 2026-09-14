@@ -2,7 +2,10 @@ babel==2.18.0
 backrefs==6.2
 certifi==2026.2.25
 charset-normalizer==3.4.6
-click==8.3.1
+# click >= 8.3 quebra o livereload do mkdocs 1.6.1: as opcoes --livereload/
+# --no-livereload compartilham o mesmo destino e o default=True deixa de valer,
+# entao `mkdocs serve` passa a rodar sem watcher (sem hot reload).
+click==8.2.1
 colorama==0.4.6
 ghp-import==2.1.0
 idna==3.11
@@ -27,19 +30,3 @@ requests==2.33.0
 six==1.17.0
 urllib3==2.6.3
 watchdog==6.0.0
-
-#qa-analytics
-mkdocs
-mkdocs-material
-pymdown-extensions
-mkdocs-glightbox
-mkdocs-mermaid2-plugin
-mkdocs-minify-plugin
-pandas
-seaborn
-matplotlib
-typing
-datetime
-openpyxl
-streamlit
-plotly

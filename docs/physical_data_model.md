@@ -22,12 +22,12 @@ O banco foi modelado seguindo princípios relacionais, utilizando chaves primár
 
 ---
 
-# Estrutura Geral do Sistema
+## Estrutura Geral do Sistema
 
 O banco está dividido em alguns grandes domínios:
 
 | Domínio | Responsabilidade |
-|---|---|
+| --- | --- |
 | Pessoas | Clientes e funcionários |
 | Produtos | Produtos, categorias, variantes e imagens |
 | Pedidos | Pedidos, itens e pagamentos |
@@ -37,25 +37,25 @@ O banco está dividido em alguns grandes domínios:
 
 ---
 
-# Entidades do Sistema
+## Entidades do Sistema
 
 ---
 
-# Person
+## Person
 
 Tabela responsável pelo armazenamento das pessoas cadastradas na plataforma.
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | cpf | Identificador único da pessoa |
 | nome | Nome completo |
 | email | Email da pessoa |
 | telefone | Telefone de contato |
 | senha | Senha de autenticação |
 
-## Relacionamentos
+### Relacionamentos
 
 - Uma pessoa pode possuir:
   - um endereço
@@ -65,14 +65,14 @@ Tabela responsável pelo armazenamento das pessoas cadastradas na plataforma.
 
 ---
 
-# Address
+## Address
 
 Tabela responsável pelo endereço associado a uma pessoa.
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | id | Identificador do endereço |
 | cpf_pessoa | Pessoa relacionada |
 | cep | CEP |
@@ -83,22 +83,22 @@ Tabela responsável pelo endereço associado a uma pessoa.
 | cidade | Cidade |
 | uf | Unidade federativa |
 
-## Relacionamentos
+### Relacionamentos
 
 - Um endereço pertence a uma pessoa.
 
 ---
 
-# Employee
+## Employee
 
 Tabela que representa funcionários da loja.
 
 A modelagem foi feita utilizando o CPF da pessoa como chave primária e chave estrangeira ao mesmo tempo, caracterizando uma especialização da entidade `person`.
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | cpf | CPF do funcionário |
 | ativo | Indica se o funcionário está ativo |
 | role_perfil | Perfil de acesso |
@@ -106,7 +106,7 @@ A modelagem foi feita utilizando o CPF da pessoa como chave primária e chave es
 | meta_vendas | Meta individual |
 | codigo_funcionario | Código interno |
 
-## Relacionamentos
+### Relacionamentos
 
 - Um funcionário é obrigatoriamente uma pessoa.
 - Um funcionário pode participar de pedidos.
@@ -114,14 +114,14 @@ A modelagem foi feita utilizando o CPF da pessoa como chave primária e chave es
 
 ---
 
-# Sales Goal
+## Sales Goal
 
 Tabela responsável pelas metas de vendas dos funcionários.
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | id_goal | Identificador |
 | cpf_funcionario | Funcionário relacionado |
 | mes | Mês da meta |
@@ -129,20 +129,20 @@ Tabela responsável pelas metas de vendas dos funcionários.
 | valor_meta | Valor esperado |
 | taxa_comissao_bonus | Comissão bônus |
 
-## Relacionamentos
+### Relacionamentos
 
 - Uma meta pertence a um funcionário.
 
 ---
 
-# Product
+## Product
 
 Tabela principal de produtos.
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | id_produto | Identificador do produto |
 | titulo | Nome do produto |
 | descricao | Descrição |
@@ -157,7 +157,7 @@ Tabela principal de produtos.
 | media_avaliacao | Média das avaliações |
 | total_avaliacoes | Quantidade de avaliações |
 
-## Relacionamentos
+### Relacionamentos
 
 - Um produto pode:
   - possuir variantes
@@ -167,7 +167,7 @@ Tabela principal de produtos.
 
 ---
 
-# Product Variant
+## Product Variant
 
 Tabela responsável pelas variantes de produtos.
 
@@ -178,10 +178,10 @@ Permite que um mesmo produto possua diferentes:
 - medidas
 - preços
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | codigo_sku | SKU da variante |
 | preco_variante | Preço específico |
 | ativo | Disponibilidade |
@@ -190,7 +190,7 @@ Permite que um mesmo produto possua diferentes:
 | medidas | Medidas adicionais |
 | id_produto | Produto relacionado |
 
-## Relacionamentos
+### Relacionamentos
 
 - Uma variante pertence a um produto.
 - Uma variante pode possuir:
@@ -201,40 +201,40 @@ Permite que um mesmo produto possua diferentes:
 
 ---
 
-# Category
+## Category
 
 Tabela de categorias dos produtos.
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | id_categoria | Identificador |
 | nome | Nome da categoria |
 
 ---
 
-# Product Category
+## Product Category
 
 Tabela associativa entre produtos e categorias.
 
 Implementa relacionamento muitos-para-muitos.
 
-## Relacionamentos
+### Relacionamentos
 
 - Um produto pode possuir várias categorias.
 - Uma categoria pode possuir vários produtos.
 
 ---
 
-# Image
+## Image
 
 Tabela responsável pelas imagens do sistema.
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | id_imagem | Identificador |
 | url | URL da imagem |
 | ordem | Ordem de exibição |
@@ -243,39 +243,39 @@ Tabela responsável pelas imagens do sistema.
 
 ---
 
-# Catalog Image
+## Catalog Image
 
 Tabela associativa entre imagens e variantes de produtos.
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | id_imagem | Imagem relacionada |
 | codigo_sku | Variante relacionada |
 | ordem_no_catalogo | Ordem no catálogo |
 
 ---
 
-# Stock
+## Stock
 
 Tabela responsável pelo controle de estoque atual.
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | codigo_sku | Variante relacionada |
 | qtd_online | Quantidade disponível online |
 | qtd_loja_fisica | Quantidade disponível em loja |
 
-## Relacionamentos
+### Relacionamentos
 
 - O estoque pertence a uma variante.
 
 ---
 
-# Stock Log
+## Stock Log
 
 Tabela de auditoria de movimentações de estoque.
 
@@ -286,10 +286,10 @@ Responsável por registrar:
 - alterações
 - ajustes
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | id_log | Identificador |
 | codigo_sku | Variante afetada |
 | id_pedido | Pedido relacionado |
@@ -305,14 +305,14 @@ Responsável por registrar:
 
 ---
 
-# Orders
+## Orders
 
 Tabela principal de pedidos.
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | id_pedido | Identificador |
 | id_usuario | Cliente responsável |
 | id_cupom | Cupom aplicado |
@@ -326,7 +326,7 @@ Tabela principal de pedidos.
 | id_funcionario | Funcionário responsável |
 | codigo_rastreamento | Rastreamento |
 
-## Relacionamentos
+### Relacionamentos
 
 - Um pedido:
   - pertence a um cliente
@@ -337,35 +337,35 @@ Tabela principal de pedidos.
 
 ---
 
-# Order Item
+## Order Item
 
 Tabela de itens do pedido.
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | id_item_pedido | Identificador |
 | id_pedido | Pedido relacionado |
 | id_variante | Variante comprada |
 | quantidade | Quantidade adquirida |
 | preco_unitario | Preço unitário |
 
-## Relacionamentos
+### Relacionamentos
 
 - Um item pertence a um pedido.
 - Um item referencia uma variante de produto.
 
 ---
 
-# Payment
+## Payment
 
 Tabela responsável pelos pagamentos.
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | id_pagamento | Identificador |
 | id_pedido | Pedido relacionado |
 | order_nsu | Código da ordem |
@@ -382,20 +382,20 @@ Tabela responsável pelos pagamentos.
 | created_at | Data de criação |
 | updated_at | Data de atualização |
 
-## Relacionamentos
+### Relacionamentos
 
 - Um pagamento pertence a um pedido.
 
 ---
 
-# Coupon
+## Coupon
 
 Tabela responsável pelos cupons promocionais.
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | numero_do_cupom | Código do cupom |
 | tipo_cupom | Tipo do desconto |
 | valor_desconto | Valor aplicado |
@@ -406,7 +406,7 @@ Tabela responsável pelos cupons promocionais.
 | nome_influenciador | Influenciador relacionado |
 | usos_atuais | Quantidade utilizada |
 
-## Relacionamentos
+### Relacionamentos
 
 - Um cupom pode:
   - ser aplicado em pedidos
@@ -414,7 +414,7 @@ Tabela responsável pelos cupons promocionais.
 
 ---
 
-# Coupon Product
+## Coupon Product
 
 Tabela associativa entre cupons e produtos.
 
@@ -422,21 +422,21 @@ Implementa relacionamento muitos-para-muitos.
 
 ---
 
-# Review
+## Review
 
 Tabela responsável pelas avaliações dos produtos.
 
-## Campos principais
+### Campos principais
 
 | Campo | Descrição |
-|---|---|
+| --- | --- |
 | cpf_cliente | Cliente avaliador |
 | id_produto | Produto avaliado |
 | nota | Nota atribuída |
 | comentario | Comentário |
 | data_avaliacao | Data da avaliação |
 
-## Relacionamentos
+### Relacionamentos
 
 - Uma avaliação pertence:
   - a uma pessoa
@@ -444,7 +444,7 @@ Tabela responsável pelas avaliações dos produtos.
 
 ---
 
-# Considerações Arquiteturais
+## Considerações Arquiteturais
 
 O modelo foi desenvolvido visando:
 
@@ -469,8 +469,7 @@ A modelagem também contempla mecanismos importantes para sistemas de marketplac
 - Sistema de avaliações
 - Integração com gateway de pagamento
 
-
-## Histórico de Versionamento
+### Histórico de Versionamento
 
 | Versão | Autor                                        | Resumo                      | Data       |
 | ------ | -------------------------------------------- | --------------------------- | ---------- |

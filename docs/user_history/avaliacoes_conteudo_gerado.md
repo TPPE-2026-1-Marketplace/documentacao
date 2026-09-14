@@ -1,23 +1,28 @@
 # Avaliações e Conteúdo Gerado pelo Usuário
 
 ## US07 - Avaliar produtos
+
 **Como** cliente,  
 **quero** expor minha avaliação do produto em estrelas e comentários,  
 **para que** eu possa expressar meu nível de satisfação com a compra.
 
 ### Regras de negócio
+
 - A avaliação em estrelas deve aceitar notas de 1 a 5.
 - O comentário textual deve permitir até 2.000 caracteres.
 
 ## US08 - Visualização de avaliação do produto
+
 **Como** cliente,  
 **quero** visualizar as avaliações de outros usuários do produto que desejo comprar,  
 **para que** eu possa ter mais confiança na qualidade e confiabilidade da compra.
 
 ### Regra de negócio
+
 As avaliações devem ser exibidas logo abaixo das especificações do produto.
 
 ## US09 - Moderar avaliações de produtos
+
 **Como** gerente,  
 **quero** ter uma interface para excluir as avaliações dos produtos recebidas,  
 **para que** eu possa evitar conteúdos ofensivos, spam ou comentários irrelevantes sobre os produtos.

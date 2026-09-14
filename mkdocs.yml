@@ -101,20 +101,24 @@ nav:
   - Home: index.md
   - Reuniões:
       - 26/08/2026: atas_reuniao/ata_26_08_2026.md
-  - Entregas: releases.md
+  - Requisitos:
+    - Backlog:
+        - Visão Geral: backlog.md
+        - Catálogo e Modelagem: user_history/catalogo_modelagem.md
+        - Busca, Navegação e Atendimento: user_history/busca_navegacao_atendimento.md
+        - Estoque, Loja Física e Operação: user_history/estoque_loja_fisica_operacao.md
+        - Compra, Pagamento e Entrega: user_history/compra_pagamento_entrega.md
+        - Clientes, CRM e Marketing: user_history/clientes_crm_marketing.md
+        - Fiscal, Trocas e Pós-venda: user_history/fiscal_trocas_pos_venda.md
+        - Avaliações e Conteúdo Gerado pelo Usuário: user_history/avaliacoes_conteudo_gerado.md
+        - Indicadores, Metas e Gamificação: user_history/indicadores_metas_gamificacao.md
+    - Requisitos Não Funcionais: non_functional_requirements.md
+  - Protótipo: prototipo.md
+  - Modelo Físico do Banco de Dados: physical_data_model.md
+  - Sprints:
+      - Visão Geral: sprints.md
+      - Modelo de Relatório: sprints/template.md
+      - Sprint 01: sprints/01.md
+  - Entregas - TPPE: releases.md
   - Guia de Contribuição: contributing_guidelines.md
   - Gitflow do Projeto: gitflow.md
-  - Backlog:
-      - Visão Geral: backlog.md
-      - Catálogo e Modelagem: user_history/catalogo_modelagem.md
-      - Busca, Navegação e Atendimento: user_history/busca_navegacao_atendimento.md
-      - Estoque, Loja Física e Operação: user_history/estoque_loja_fisica_operacao.md
-      - Compra, Pagamento e Entrega: user_history/compra_pagamento_entrega.md
-      - Clientes, CRM e Marketing: user_history/clientes_crm_marketing.md
-      - Fiscal, Trocas e Pós-venda: user_history/fiscal_trocas_pos_venda.md
-      - Avaliações e Conteúdo Gerado pelo Usuário: user_history/avaliacoes_conteudo_gerado.md
-      - Indicadores, Metas e Gamificação: user_history/indicadores_metas_gamificacao.md
-  - Requisitos Não Funcionais: non_functional_requirements.md
-  - Protótipo: prototipo.md
-  - Modelo Físico do Banco de Dados: physical_data_model.md 
-  - Vídeo de Apresentação: video.md

@@ -1,0 +1,11 @@
+# Dependencias do dashboard de QA (streamlit run qa-analytics/dashboard.py).
+#
+# Ambiente separado do requirements.txt da raiz, que e instalado na imagem do
+# MkDocs e no CI da documentacao: o dashboard nao roda ali, e o streamlit puxa
+# click >= 8.3, versao que quebra o livereload do mkdocs serve.
+#
+# Versoes validadas executando o dashboard.py em Python 3.12.
+pandas==3.0.5
+plotly==7.0.0
+requests==2.34.2
+streamlit==1.63.0

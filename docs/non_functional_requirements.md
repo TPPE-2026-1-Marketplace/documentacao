@@ -3,6 +3,7 @@
 ## Lista de Requisitos Não Funcionais
 
 ### RNF01 - Sincronização de estoque em tempo real
+
 Sincronizar o saldo de estoque em tempo real entre a loja física e a plataforma de e-commerce.
 
 **Histórias relacionadas:**
@@ -18,6 +19,7 @@ Sincronizar o saldo de estoque em tempo real entre a loja física e a plataforma
 - Caso exista maior demanda em um canal do que no outro, deve haver um mecanismo de comunicação ou balanceamento
 
 ### RNF02 - Regra de exibição de produtos em destaque
+
 Limitar a exibição de produtos em destaque na página inicial a exatamente 8 itens.
 
 **Histórias relacionadas:**
@@ -27,6 +29,7 @@ Limitar a exibição de produtos em destaque na página inicial a exatamente 8 i
 - [US10 - Incluir redirecionamento para o WhatsApp](user_history/busca_navegacao_atendimento.md#us10-incluir-redirecionamento-para-o-whatsapp)
 
 ### RNF03 - Integração segura de pagamentos no site
+
 Integrar o sistema com as APIs de pagamento das adquirentes InfinitePay ou HyperCast, garantindo que o pagamento seja realizado dentro da plataforma.
 
 **Histórias relacionadas:**
@@ -36,6 +39,7 @@ Integrar o sistema com as APIs de pagamento das adquirentes InfinitePay ou Hyper
 - [US18 - Inserir código de rastreamento manualmente](user_history/compra_pagamento_entrega.md#us18-inserir-codigo-de-rastreamento-manualmente)
 
 ### RNF04 - Integração com emissão de NF-e
+
 Integrar o sistema com um serviço de emissão de Nota Fiscal Eletrônica (NF-e) e Certificado Digital.
 
 **Histórias relacionadas:**
@@ -45,6 +49,7 @@ Integrar o sistema com um serviço de emissão de Nota Fiscal Eletrônica (NF-e)
 - [US18 - Inserir código de rastreamento manualmente](user_history/compra_pagamento_entrega.md#us18-inserir-codigo-de-rastreamento-manualmente)
 
 ### RNF05 - Emissão de crédito interno para devoluções
+
 Emitir crédito interno, no formato de cupom de troca, para clientes em casos de devolução de mercadoria.
 
 **Histórias relacionadas:**
@@ -55,6 +60,7 @@ Emitir crédito interno, no formato de cupom de troca, para clientes em casos de
 ## Regras de Negócio
 
 ### RN01 - Seleção de grade de tamanhos no vestuário virtual
+
 Disponibilizar a grade de tamanhos padrão para seleção no vestiário virtual.
 
 **História relacionada:**
@@ -62,6 +68,7 @@ Disponibilizar a grade de tamanhos padrão para seleção no vestiário virtual.
 - [US01 - Registrar produto](user_history/catalogo_modelagem.md#us01-registrar-produto)
 
 ### RN02 - Limite de itens em destaque na página inicial
+
 Aplicar a regra de 8 itens na vitrine principal.
 
 **História relacionada:**
@@ -69,6 +76,7 @@ Aplicar a regra de 8 itens na vitrine principal.
 - Item originalmente levantado como US09 e posteriormente reclassificado como requisito não funcional
 
 ### RN03 - Comissão automática por venda vinculada
+
 Calcular automaticamente a comissão de 2,5% sobre o valor acumulado no mês para o vendedor vinculado.
 
 **História relacionada:**

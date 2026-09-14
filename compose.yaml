@@ -4,12 +4,43 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: docs
     container_name: dk-fashion-docs
     ports:
       - "8000:8000"
     volumes:
       - .:/app
-    command: mkdocs serve --dev-addr=0.0.0.0:8000
 
-volumes:
-  app:
+  # Serviços de qualidade: rodam sob demanda com `docker compose run` (ou pelos
+  # targets do Makefile) e não sobem junto com `docker compose up`.
+  lint-md:
+    image: davidanson/markdownlint-cli2:v0.23.2
+    working_dir: /workdir
+    volumes:
+      - .:/workdir
+    profiles:
+      - quality
+
+  check-links:
+    image: dk-fashion-docs-quality
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: quality
+    volumes:
+      - .:/app
+    profiles:
+      - quality
+
+  # Geração das apresentações de sprint (ver scripts/build-slides.sh).
+  slides:
+    image: marpteam/marp-cli:v4.5.0
+    init: true
+    volumes:
+      - .:/home/marp/app
+    environment:
+      # A imagem usa esta variável para gravar a saída com o dono correto;
+      # o script exporta o UID:GID do host antes de chamar o compose.
+      MARP_USER: "${MARP_USER:-1000:1000}"
+    profiles:
+      - slides
