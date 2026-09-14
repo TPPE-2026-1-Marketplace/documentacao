@@ -11,9 +11,16 @@ tabela de contribuições por clan, além das entregas coletivas da equipe.
 
 | Clan | Sigla | Escopo | Integrantes |
 | --- | --- | --- | --- |
-| Clan Infra | DE | \[definir escopo] | \[definir integrantes] |
-| Clan Design | K | \[definir escopo] | \[definir integrantes] |
-| Clan Front | G | \[definir escopo] | \[definir integrantes] |
+| Clan Infra | DE | Garantia da qualidade (back) e deploy | [Márcio Henrique](https://github.com/DeM4rcio), [Eduardo Matheus](https://github.com/DiceRunner714) e [Bruno Bragança](https://github.com/BrunoBReis) |
+| Clan Design | K | Definição do design com base na comunicação com o cliente | [Ana Luiza Soares](https://github.com/Ana-Luiza-SC), [Yzabella Miranda](https://github.com/redjsun) e [Mateus Villela](https://github.com/MVConsorte) |
+| Clan Front | G | Execução do front-end proposto pelo design | [Gabriel Soares](https://github.com/SAnjos3), [Leonardo Henrique](https://github.com/leohssjr) e [Ana Luiza Komatsu](https://github.com/luluaroeira) |
+
+A divisão em clans é uma estrutura prévia de organização: ela indica o foco
+principal de cada grupo e serve de ponto de partida para o planejamento. Os
+integrantes, porém, não se limitam ao escopo do próprio clan — a atuação é
+flexível e se ajusta conforme a necessidade da sprint e do planejamento, de
+modo que qualquer pessoa pode contribuir em frentes de outros clans quando a
+entrega exigir.
 
 ## Índice das sprints
 
