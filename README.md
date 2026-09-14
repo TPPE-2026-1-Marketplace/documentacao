@@ -221,7 +221,7 @@ Detalhes:
 
 ## Equipe GCES (26.2) - Em atividade
 
-<table> <tr> 
+<table> <tr>
 
 <td align="center">
   <a href="https://github.com/luluaroeira">
@@ -245,7 +245,7 @@ Detalhes:
 
 </tr>
 
-<tr> 
+<tr>
 
 <td align="center">
   <a href="https://github.com/DiceRunner714">
@@ -269,7 +269,7 @@ Detalhes:
 
 </tr>
 
-<tr> 
+<tr>
 
 <td align="center">
   <a href="https://github.com/DeM4rcio">

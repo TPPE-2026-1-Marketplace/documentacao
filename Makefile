@@ -32,7 +32,7 @@ serve:
 	$(COMPOSE) up --build docs
 
 serve-background:
-	$(COMPOSE) up --build -d docs 
+	$(COMPOSE) up --build -d docs
 
 build:
 	$(COMPOSE) run --rm --no-deps --user $(HOST_USER) docs mkdocs build --strict

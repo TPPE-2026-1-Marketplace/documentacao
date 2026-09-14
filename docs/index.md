@@ -162,7 +162,7 @@ make quality
 
 ## Equipe GCES (26.2) - Em atividade
 
-<table> <tr> 
+<table> <tr>
 
 <td align="center">
   <a href="https://github.com/luluaroeira">
@@ -186,7 +186,7 @@ make quality
 
 </tr>
 
-<tr> 
+<tr>
 
 <td align="center">
   <a href="https://github.com/DiceRunner714">
@@ -210,7 +210,7 @@ make quality
 
 </tr>
 
-<tr> 
+<tr>
 
 <td align="center">
   <a href="https://github.com/DeM4rcio">
