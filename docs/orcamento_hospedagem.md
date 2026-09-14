@@ -88,7 +88,8 @@ O plano gratuito do Render possui **limitações críticas** que inviabilizam a 
 | **TOTAL MENSAL** | | | **~$93,33** | **~R$ 508,00** |
 | **TOTAL ANUAL** | | | **~$1.120,00** | **~R$ 6.096,00** |
 
-#### Opção B — Railway Pro 
+#### Opção B — Railway Pro
+
 | Serviço | Plano | Recursos | Custo (USD/mês) | Custo (BRL/mês) |
 | :--- | :--- | :--- | ---: | ---: |
 | Backend + DB | Railway Pro | Uso sob demanda (inclui $20 crédito), autoscaling | ~$30,00 | R$ 156,00 |
@@ -120,7 +121,7 @@ O plano gratuito do Render possui **limitações críticas** que inviabilizam a 
 
 ## Recomendação da Equipe
 
-### Para iniciar a operação comercial imediatamente:
+### Para iniciar a operação comercial imediatamente
 
 > **Cenário 1 — Opção B (Railway Hobby) — ~R$ 42/mês**
 
@@ -133,7 +134,7 @@ O plano gratuito do Render possui **limitações críticas** que inviabilizam a 
 - Deploy automático via GitHub
 - Fácil upgrade para plano Pro quando o tráfego crescer
 
-### Para operação comercial consolidada (quando o negócio crescer):
+### Para operação comercial consolidada (quando o negócio crescer)
 
 > **Cenário 2 — Opção B (Railway Pro + Vercel Pro) — ~R$ 300/mês**
 
@@ -173,6 +174,5 @@ Dependendo das necessidades futuras do negócio, podem haver custos extras:
 4. **A migração entre plataformas** (ex: do Render para Railway) pode ser feita sem downtime significativo, já que o projeto utiliza Docker e variáveis de ambiente padronizadas.
 
 5. **Escalabilidade:** Todas as plataformas recomendadas permitem upgrade de plano conforme o crescimento do tráfego, sem necessidade de migração completa.
-
 
 > *Este orçamento foi elaborado com base nos preços públicos das plataformas em junho de 2026. Os valores podem sofrer alterações sem aviso prévio pelos provedores. Recomendamos verificar os valores atualizados nos sites oficiais antes da contratação.*
