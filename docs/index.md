@@ -1,47 +1,49 @@
 # DK Fashion - Documentação
 
-Repositório da documentação do projeto **DK Fashion**.
+Portal de documentação do **DK Fashion**, marketplace de moda desenvolvido para
+uma cliente real a partir de elicitação contínua de requisitos.
 
-## Sobre a documentação
+## Sobre o projeto
 
-Esta documentação centraliza os principais artefatos da primeira entrega do projeto, incluindo:
+O DK Fashion nasce da necessidade de levar para o digital uma loja de moda que
+já opera fisicamente. Em vez de substituir a operação existente, a plataforma
+integra os dois canais: o mesmo catálogo, o mesmo estoque e a mesma base de
+clientes atendem tanto a venda presencial quanto a venda on-line.
 
-- backlog do produto;
-- requisitos não funcionais;
-- arquitetura do projeto;
-- modelagem do banco de dados;
-- conteinerização do ambiente
+O sistema é composto por uma loja virtual voltada ao cliente final e por um
+painel administrativo usado pela equipe da loja. Entre as capacidades previstas
+no [backlog](backlog.md) e nos
+[requisitos não funcionais](non_functional_requirements.md) estão:
 
-## Como executar
+- **Catálogo e vitrine** — cadastro de produtos com variações de cor e tamanho,
+  imagens, busca com filtros e página de detalhes;
+- **Compra on-line** — carrinho, múltiplas formas de pagamento (Pix, crédito e
+  débito), cálculo de frete, rastreamento e retirada na loja física;
+- **Operação da loja** — registro de vendas presenciais, sincronização de
+  estoque entre os canais, histórico auditável de alterações e níveis de acesso
+  por perfil (cliente, caixa, vendedor, gerente e administrador);
+- **Relacionamento e marketing** — cadastro de clientes, cupons de desconto,
+  cupons de parceiros e exportação da base para campanhas de mídia paga;
+- **Gestão de desempenho** — vínculo de vendedor por transação, cálculo de
+  comissão, metas mensais, ranking e acompanhamento de progresso;
+- **Pós-venda e fiscal** — avaliações de produtos com moderação, trocas e
+  integração com emissão de NF-e.
 
-O fluxo oficial do projeto é via Docker: não é preciso instalar Python ou
-MkDocs na máquina, nem criar ambiente virtual.
+## Objetivo desta documentação
 
-1. Suba a documentação:
+Esta documentação organiza, em um único lugar, as fontes de conhecimento que o
+projeto acumulou — decisões de produto, decisões técnicas e o registro do que
+vem sendo construído:
 
-```bash
-make serve
-
-# ou
-
-make serve-background # sobe como Daemon
-```
-
-1. Acesse a documentação:
-
-```text
-http://localhost:8000
-```
-
-1. Para encerrar:
-
-```bash
-make stop
-```
-
-Como o projeto é montado como volume no container, alterações em `docs/` e
-`mkdocs.yml` são refletidas no navegador com hot reload. Se mudar o
-`requirements.txt`, rode `make serve` novamente para reconstruir a imagem.
+| Fonte de conhecimento | Onde está |
+| --- | --- |
+| Decisões de requisitos elicitadas com a cliente: histórias de usuário e requisitos não funcionais | [Backlog](backlog.md) e [Requisitos Não Funcionais](non_functional_requirements.md) |
+| Registro das conversas que originaram essas decisões | [Atas de reunião](atas_reuniao/ata_26_08_2026.md) |
+| Detalhamento da arquitetura do banco de dados | [Modelo Físico do Banco de Dados](physical_data_model.md) |
+| Detalhamento da prototipação e dos fluxos de interface | [Protótipo](prototipo.md) |
+| Documentação das sprints e do desenvolvimento em andamento | [Sprints](sprints.md) |
+| Guia de contribuição para o projeto open source | [Guia de Contribuição](contributing_guidelines.md) |
+| Fluxo de branches, revisão e release adotado | [Gitflow do Projeto](gitflow.md) |
 
 ## Controle de qualidade
 
@@ -58,27 +60,29 @@ make quality
 | `make check-links` | Roda `mkdocs build --strict` e varre o HTML gerado com o `LinkChecker` |
 | `make check-links-extern` | Igual ao anterior, incluindo links externos |
 
-## Passo a passo recomendado
-
-1. Entre na pasta do projeto.
-2. Rode `make serve`.
-3. Abra `http://localhost:8000`.
-4. Edite os arquivos em `docs/`.
-5. Veja o hot reload no navegador.
-6. Rode `make quality` antes de abrir o PR.
-7. Ao terminar, rode `make stop`.
-
 ## Estrutura do repositório
 
 ```text
 .
 |-- docs/
 |   |-- index.md
-|   |-- contributing_guidelines.md
-|   |-- user_history.md
+|   |-- backlog.md
 |   |-- non_functional_requirements.md
+|   |-- physical_data_model.md
+|   |-- prototipo.md
+|   |-- contributing_guidelines.md
+|   |-- gitflow.md
+|   |-- sprints.md
+|   |-- atas_reuniao/
+|   |-- sprints/
 |   `-- user_history/
+|-- slides/
+|   `-- template.md
+|-- qa-analytics/
+|   |-- dashboard.py
+|   `-- requirements.txt
 |-- scripts/
+|   |-- build-slides.sh
 |   `-- check-links.sh
 |-- mkdocs.yml
 |-- Dockerfile
@@ -234,7 +238,86 @@ make quality
 
 </tr> </table>
 
+## Como executar
+
+O fluxo oficial do projeto é via Docker: não é preciso instalar Python ou
+MkDocs na máquina, nem criar ambiente virtual.
+
+1. Suba a documentação:
+
+```bash
+make serve
+
+# ou
+
+make serve-background # sobe como Daemon
+```
+
+1. Acesse a documentação:
+
+```text
+http://localhost:8000
+```
+
+1. Para encerrar:
+
+```bash
+make stop
+```
+
+Como o projeto é montado como volume no container, alterações em `docs/` e
+`mkdocs.yml` são refletidas no navegador com hot reload. Se mudar o
+`requirements.txt`, rode `make serve` novamente para reconstruir a imagem.
+
 ## Tecnologias utilizadas
 
-- [MkDocs](https://www.mkdocs.org/)
-- [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
+As tecnologias abaixo são as do **projeto DK Fashion como um todo**, e não
+apenas as deste repositório de documentação.
+
+### Front-end
+
+| Tecnologia | Papel |
+| --- | --- |
+| [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) | Interface da loja e do painel administrativo (SPA) |
+| [Vite](https://vite.dev/) | Build e servidor de desenvolvimento |
+| [TailwindCSS](https://tailwindcss.com/) | Estilização e design system da interface |
+| [Figma](https://www.figma.com/) | Prototipação de alta fidelidade que guia a implementação |
+
+### Back-end
+
+| Tecnologia | Papel |
+| --- | --- |
+| [NestJS](https://nestjs.com/) + [TypeScript](https://www.typescriptlang.org/) | API REST modular, organizada por domínio |
+| [TypeORM](https://typeorm.io/) | Mapeamento objeto-relacional e migrações de esquema |
+| [PostgreSQL](https://www.postgresql.org/) | Banco de dados relacional |
+| [JWT](https://jwt.io/) | Autenticação e controle de acesso por perfil |
+| [Jest](https://jestjs.io/) | Testes automatizados |
+
+### Documentação
+
+| Tecnologia | Papel |
+| --- | --- |
+| [MkDocs](https://www.mkdocs.org/) + [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) | Geração e tema do portal de documentação |
+| [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2) | Padronização do Markdown |
+| [LinkChecker](https://linkchecker.github.io/linkchecker/) | Verificação de links quebrados |
+| [Marp](https://marp.app/) | Slides das apresentações de sprint |
+
+### Infraestrutura e qualidade
+
+| Tecnologia | Papel |
+| --- | --- |
+| [Docker](https://www.docker.com/) e Docker Compose | Conteinerização dos ambientes de desenvolvimento |
+| [GitHub Actions](https://docs.github.com/actions) | Integração e entrega contínuas |
+| [SonarCloud](https://sonarcloud.io/) | Análise estática e métricas de qualidade do código |
+| [Render](https://render.com/) e [Vercel](https://vercel.com/) | Hospedagem da API e do front-end (ver [orçamento](orcamento_hospedagem.md)) |
+
+## Histórico de Versionamento
+
+| Versão | Autor | Resumo | Data |
+| --------------- | --------------- | --------------- | --------------- |
+| `1.0` | [Bruno Bragança](https://github.com/BrunoBReis) | Criação da página inicial da documentação | 26/03/2026 |
+| `1.1` | [Bruno Bragança](https://github.com/BrunoBReis) | Atualização da página inicial com a equipe do projeto | 30/03/2026 |
+| `1.2` | [Bruno Bragança](https://github.com/BrunoBReis) | Atualização das instruções de execução para o fluxo com Docker | 06/04/2026 |
+| `1.3` | [Bruno Bragança](https://github.com/BrunoBReis) | Inclusão da seção de controle de qualidade da documentação | 01/09/2026 |
+| `1.4` | [Eduardo Matheus](https://github.com/DiceRunner714) | Adição da equipe GCES (26.2) e do atalho para servir a documentação em segundo plano | 04/09/2026 |
+| `1.5` | [Bruno Bragança](https://github.com/BrunoBReis) | Descrição do projeto, objetivo da documentação e tecnologias separadas por front-end, back-end e documentação | 14/09/2026 |
