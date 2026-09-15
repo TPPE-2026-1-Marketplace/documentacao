@@ -4,11 +4,12 @@ COMPOSE := docker compose
 # (site estático, correções do markdownlint) não fiquem pertencendo ao root.
 HOST_USER := $(shell id -u):$(shell id -g)
 
-.PHONY: help hooks serve build stop lint-md lint-md-fix check-links check-links-extern quality slides slides-pdf qa-serve qa-stop clean
+.PHONY: help hooks hooks-off serve build stop lint-md lint-md-fix check-links check-links-extern quality slides slides-pdf qa-serve qa-stop clean
 
 help:
 	@echo "Targets disponíveis (todos rodam via Docker):"
 	@echo "  make hooks               ativa os hooks do repositório (.githooks)"
+	@echo "  make hooks-off           desativa os hooks do repositório"
 	@echo "  make serve               sobe a documentação em http://localhost:8000"
 	@echo "  make serve-background    sobe a documentação em background (libera o terminal)"
 	@echo "  make build               gera o site estático em ./site"
@@ -29,6 +30,10 @@ help:
 hooks:
 	git config core.hooksPath .githooks
 	@echo "Hooks ativados a partir de .githooks/"
+
+hooks-off:
+	git config --unset core.hooksPath || true
+	@echo "Hooks desativados (voltando para .git/hooks)"
 
 serve:
 	$(COMPOSE) up --build docs
