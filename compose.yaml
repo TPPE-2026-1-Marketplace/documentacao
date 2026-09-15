@@ -32,6 +32,20 @@ services:
     profiles:
       - quality
 
+  qa-analytics:
+    image: dk-fashion-qa-analytics
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: qa-analytics
+    container_name: dk-fashion-qa-analytics
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./qa-analytics:/app/qa-analytics
+    profiles:
+      - qa-analytics
+
   # Geração das apresentações de sprint (ver scripts/build-slides.sh).
   slides:
     image: marpteam/marp-cli:v4.5.0

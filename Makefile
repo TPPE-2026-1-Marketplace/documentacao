@@ -4,7 +4,7 @@ COMPOSE := docker compose
 # (site estático, correções do markdownlint) não fiquem pertencendo ao root.
 HOST_USER := $(shell id -u):$(shell id -g)
 
-.PHONY: help hooks serve build stop lint-md lint-md-fix check-links check-links-extern quality slides slides-pdf clean
+.PHONY: help hooks serve build stop lint-md lint-md-fix check-links check-links-extern quality slides slides-pdf qa-serve qa-stop clean
 
 help:
 	@echo "Targets disponíveis (todos rodam via Docker):"
@@ -20,6 +20,8 @@ help:
 	@echo "  make quality             roda lint-md + check-links"
 	@echo "  make slides              gera as apresentações em HTML (slides/dist/)"
 	@echo "  make slides-pdf          gera as apresentações em HTML e PDF"
+	@echo "  make qa-serve            sobe o dashboard de QA em http://localhost:8501"
+	@echo "  make qa-stop             para o container do dashboard de QA"
 	@echo "  make clean               remove containers e imagens locais"
 
 # Aponta o Git para os hooks versionados: o commit-msg preenche os
@@ -59,6 +61,12 @@ slides:
 
 slides-pdf:
 	./scripts/build-slides.sh --pdf
+
+qa-serve:
+	$(COMPOSE) up --build qa-analytics
+
+qa-stop:
+	$(COMPOSE) stop qa-analytics
 
 clean:
 	$(COMPOSE) down --rmi local --remove-orphans
