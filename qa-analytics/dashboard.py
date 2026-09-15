@@ -19,7 +19,7 @@ import streamlit as st
 _LOGO_PATH = os.path.join(os.path.dirname(__file__), "logo.png")
 
 st.set_page_config(
-    page_title="MeasureSoftGram – Dashboard Gerencial",
+    page_title="DK Fashion – Dashboard Gerencial",
     page_icon=_LOGO_PATH,
     layout="wide",
 )
@@ -260,10 +260,27 @@ def build_sonar_metrics(sonar_df: pd.DataFrame) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# Datas de release — linhas verticais nos gráficos de qualidade
+# Datas de sprint — linhas verticais nos gráficos de qualidade
 # ---------------------------------------------------------------------------
 
-RELEASE_DATES = ["27/04/2026", "25/05/2026", "22/06/2026"]
+SPRINT_START_DATE = "01/09/2026"
+SPRINT_END_LIMIT = "30/11/2026"
+SPRINT_LENGTH_DAYS = 14
+
+
+def _sprint_end_dates() -> list:
+    """Gera as datas de término de cada sprint (2 semanas), a partir do início do projeto.
+
+    Sprint 1: 01/09 a 14/09 (14 dias, ambos inclusive) — término em 14/09.
+    """
+    start = pd.to_datetime(SPRINT_START_DATE, dayfirst=True)
+    limit = pd.to_datetime(SPRINT_END_LIMIT, dayfirst=True)
+    dates = []
+    current_end = start + pd.Timedelta(days=SPRINT_LENGTH_DAYS - 1)
+    while current_end <= limit:
+        dates.append(current_end)
+        current_end += pd.Timedelta(days=SPRINT_LENGTH_DAYS)
+    return dates
 
 
 def _quality_rating(value: float) -> tuple:
@@ -281,14 +298,13 @@ def _quality_rating(value: float) -> tuple:
 
 
 def _add_release_lines(fig: go.Figure) -> go.Figure:
-    """Adiciona linhas verticais pontilhadas marcando as datas de release."""
-    for d in RELEASE_DATES:
-        ts = pd.to_datetime(d, dayfirst=True)
+    """Adiciona linhas verticais pontilhadas amarelas marcando o término de cada sprint (2 semanas)."""
+    for i, ts in enumerate(_sprint_end_dates(), start=1):
         fig.add_vline(
             x=ts.timestamp() * 1000,
             line_dash="dot",
-            line_color="#FF9800",
-            annotation_text=ts.strftime("%d/%m"),
+            line_color="#FFD600",
+            annotation_text=f"Sprint {i}",
             annotation_position="top",
         )
     return fig
@@ -760,41 +776,46 @@ us_status = load_us_github_status()
 all_repos_sonar = sorted(sonar_metrics.keys()) if sonar_metrics else []
 all_repos_github = sorted(runs_df["Repository Name"].dropna().unique().tolist()) if not runs_df.empty else []
 
-tab_processo, tab_qualidade_produto = st.tabs([
-    "⚙️ Processo",
-    "🔍 Qualidade do Produto",
-])
+SHOW_TAB_PROCESSO = False
+
+_tabs_labels = ["🔍 Qualidade do Produto"]
+if SHOW_TAB_PROCESSO:
+    _tabs_labels.insert(0, "⚙️ Processo")
+_tabs = st.tabs(_tabs_labels)
+tab_qualidade_produto = _tabs[-1]
+tab_processo = _tabs[0] if SHOW_TAB_PROCESSO else None
 
 # ---------------------------------------------------------------------------
 # TAB – Processo
 # ---------------------------------------------------------------------------
-with tab_processo:
-    st.subheader("Processo")
+if SHOW_TAB_PROCESSO:
+    with tab_processo:
+        st.subheader("Processo")
 
-    # ── Filtro de Sprint (compartilhado entre Gantt e Velocity) ────────────────
-    if not velocity_df.empty:
-        v_min = int(velocity_df["sprint"].min())
-        v_max = int(velocity_df["sprint"].max())
-        v_opts = list(range(v_min, v_max + 1))
+        # ── Filtro de Sprint (compartilhado entre Gantt e Velocity) ────────────────
+        if not velocity_df.empty:
+            v_min = int(velocity_df["sprint"].min())
+            v_max = int(velocity_df["sprint"].max())
+            v_opts = list(range(v_min, v_max + 1))
 
-        vcol1, vcol2 = st.columns(2)
-        with vcol1:
-            v_sprint_start = st.selectbox(
-                "Sprint Inicial",
-                options=v_opts, index=0,
-                format_func=lambda x: f"Sprint {x}",
-                key="t1_sprint_start",
-            )
-        with vcol2:
-            v_end_opts = [n for n in v_opts if n >= v_sprint_start]
-            v_sprint_end = st.selectbox(
-                "Sprint Final",
-                options=v_end_opts, index=len(v_end_opts) - 1,
-                format_func=lambda x: f"Sprint {x}",
-                key="t1_sprint_end",
-            )
+            vcol1, vcol2 = st.columns(2)
+            with vcol1:
+                v_sprint_start = st.selectbox(
+                    "Sprint Inicial",
+                    options=v_opts, index=0,
+                    format_func=lambda x: f"Sprint {x}",
+                    key="t1_sprint_start",
+                )
+            with vcol2:
+                v_end_opts = [n for n in v_opts if n >= v_sprint_start]
+                v_sprint_end = st.selectbox(
+                    "Sprint Final",
+                    options=v_end_opts, index=len(v_end_opts) - 1,
+                    format_func=lambda x: f"Sprint {x}",
+                    key="t1_sprint_end",
+                )
 
-    st.markdown("---")
+        st.markdown("---")
 
 # ---------------------------------------------------------------------------
 # TAB – Qualidade do Produto
