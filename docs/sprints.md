@@ -7,7 +7,7 @@ sprint e gerar a apresentação correspondente.
 ## Organização em clans
 
 As entregas são organizadas em três clans. Cada relatório de sprint traz uma
-tabela de contribuições por clan, além das entregas coletivas da equipe.
+linha por clan na tabela de entregas, com as US concluídas no período.
 
 | Clan | Sigla | Escopo | Integrantes |
 | --- | --- | --- | --- |
@@ -26,7 +26,7 @@ entrega exigir.
 
 | Sprint | Período | Status | Relatório | Slides |
 | --- | --- | --- | --- | --- |
-| Sprint 01 | \[data início – data fim] | Em andamento | [Relatório](sprints/01.md) | `slides/dist/01.html` |
+| Sprint 01 | 05/09/2026 – 15/09/2026 | Em andamento | [Relatório](sprints/01.md) | `slides/dist/01.html` |
 
 <!--
 Ao fechar uma sprint, adicione a linha correspondente acima e atualize o
@@ -36,19 +36,17 @@ status. Status sugeridos: Planejada, Em andamento, Concluída.
 ## Modelo de relatório
 
 Todo relatório parte de [`docs/sprints/template.md`](sprints/template.md), que
-já contém as sete seções esperadas:
+contém as duas seções esperadas:
 
-1. Objetivos da Sprint
-2. Entregas Coletivas
-3. Contribuições dos Clans — uma tabela por clan
-4. Maiores Avanços
-5. Maiores Dificuldades
-6. Lições Aprendidas
-7. Planejamento para a Próxima Sprint
+1. Entregas da Sprint — uma linha por trio, com a quantidade de US, os
+   identificadores das US e o assunto tratado
+2. Resumo — líder da apresentação, total de US concluídas e as datas de início
+   e fim da sprint
 
-Nas seções 4, 5 e 6, quando a observação for específica de um clan, use o
-formato **"Clan Infra (DE) observou que ..."**. Itens que valem para a equipe
-toda ficam sem atribuição.
+Na coluna **US**, use os números das issues do GitHub fechadas na sprint,
+identificando o repositório de origem (Backend, Frontend ou documentacao), já
+que o trabalho é rastreado por issue. A coluna **Qtd. de US** é a contagem de
+issues distintas daquela linha.
 
 ## Como registrar uma nova sprint
 

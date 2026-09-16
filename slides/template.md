@@ -21,7 +21,7 @@ style: |
     color: #1c3d5a;
   }
   section table {
-    font-size: 20px;
+    font-size: 18px;
     width: 100%;
     display: table;
   }
@@ -29,11 +29,8 @@ style: |
     background: #1c3d5a;
     color: #fff;
   }
-  .clan {
-    font-size: 18px;
-    color: #666;
-    letter-spacing: .08em;
-    text-transform: uppercase;
+  section td:nth-child(2) {
+    text-align: right;
   }
 ---
 
@@ -41,98 +38,38 @@ style: |
 <!-- _paginate: false -->
 <!-- _header: '' -->
 
-# Sprint X
+# Sprint XX
 
 **Gestão de Configuração e Evolução de Software**
 
 DK Fashion — Marketplace
 
-[Data início] – [Data fim]
+DD/MM/AAAA – DD/MM/AAAA
 
 ---
 
-## Objetivos da Sprint
-
-- [ ] Objetivo 1 planejado
-- [ ] Objetivo 2 planejado
-- [ ] Objetivo 3 planejado
-
----
-
-## Entregas Coletivas
-
-| Entrega | Status | Referência |
-| --- | --- | --- |
-| [Funcionalidade X] | Concluído | [PR/issue] |
-| [Documento Y] | Parcial | [wiki/repo] |
-| [Teste Z] | Pendente | – |
-
----
-
-<span class="clan">Contribuições dos clans</span>
-
-## Clan Infra (DE)
-
-| Integrante | Contribuições | Links |
-| --- | --- | --- |
-| Nome 1 | [contribuição] | [PR] |
-| Nome 2 | [contribuição] | [issue] |
-
----
-
-<span class="clan">Contribuições dos clans</span>
-
-## Clan Design (K)
-
-| Integrante | Contribuições | Links |
-| --- | --- | --- |
-| Nome 1 | [contribuição] | [PR] |
-| Nome 2 | [contribuição] | [issue] |
-
----
-
-<span class="clan">Contribuições dos clans</span>
-
-## Clan Front (G)
-
-| Integrante | Contribuições | Links |
-| --- | --- | --- |
-| Nome 1 | [contribuição] | [PR] |
-| Nome 2 | [contribuição] | [issue] |
-
----
-
-## Maiores Avanços
+## Entregas da Sprint
 
 <!--
-Quando o avanço for de um clan específico, use:
-"Clan Infra (DE) observou que ..."
+Uma linha por trio. Na coluna "US", use os números das issues do GitHub
+fechadas na sprint, identificando o repositório (Backend, Frontend ou
+documentacao). "Qtd. de US" é a contagem de issues distintas da linha.
 -->
 
-- [Avanço da equipe]
-- Clan Front (G) observou que [avanço do clan]
+| Trio de Desenvolvedores | Qtd. de US | US | Assunto das US |
+| --- | --- | --- | --- |
+| Dev 1 / Dev 2 / Dev 3 | 2 | Backend #123, #124 | Autenticação e controle de acesso |
+| Dev 4 / Dev 5 / Dev 6 | 3 | Frontend #125, #126, #127 | Melhorias no fluxo de contratação |
+| Dev 7 / Dev 8 / Dev 9 | 1 | Backend #128 | Integração com API externa |
 
 ---
 
-## Maiores Dificuldades
+## Resumo
 
-- [Dificuldade da equipe]
-- Clan Infra (DE) observou que [dificuldade do clan]
-
----
-
-## Lições Aprendidas
-
-- [Lição da equipe]
-- Clan Design (K) observou que [lição do clan]
-
----
-
-## Próxima Sprint
-
-- [ ] Implementar [funcionalidade]
-- [ ] Ampliar cobertura de testes
-- [ ] Melhorar documentação do processo de contribuição
+- **Líder da Apresentação:** Fulano de tal
+- **Total de US concluídas:** 6
+- **Início da Sprint:** DD/MM/AAAA
+- **Fim da Sprint:** DD/MM/AAAA
 
 ---
 
