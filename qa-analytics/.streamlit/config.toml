@@ -1,0 +1,15 @@
+# Tema do dashboard de QA: preto predominante (logo da DK Fashion) com o rosa
+# da marca como destaque (MarketPlace-Frontend: src/index.css).
+
+[theme]
+base = "dark"
+primaryColor = "#C8427C"
+backgroundColor = "#000000"
+secondaryBackgroundColor = "#111111"
+textColor = "#f9fafb"
+borderColor = "#262626"
+baseRadius = "10px"
+font = "Inter, ui-sans-serif, system-ui, sans-serif"
+chartCategoricalColors = [
+    "#C8427C", "#f9fafb", "#e06da0", "#9ca3af", "#a03062", "#6b7280",
+]

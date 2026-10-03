@@ -1,3 +1,4 @@
+import base64
 import json
 import os
 import re
@@ -25,6 +26,16 @@ st.set_page_config(
 )
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "Analytics/data")
+
+# Paleta DK Fashion: preto predominante (logo) com o rosa da marca como destaque
+# (MarketPlace-Frontend: src/index.css). O tema do Streamlit fica em .streamlit/config.toml.
+DK_BRAND = "#C8427C"
+DK_BRAND_LIGHT = "#e06da0"
+DK_BRAND_DARK = "#a03062"
+DK_CARD = "#111111"
+DK_BORDER = "#262626"
+DK_FOREGROUND = "#f9fafb"
+DK_MUTED = "#9ca3af"
 
 REPOS_LANGUAGE = {
     "MarketPlace-Frontend": "ts",
@@ -134,6 +145,42 @@ def load_sonar_data() -> pd.DataFrame:
     result = pd.concat(frames, ignore_index=True)
     result = result.sort_values(by=["repository", "datetime"])
     return result
+
+
+@st.cache_data
+def load_sonar_raw_data() -> pd.DataFrame:
+    """Valores brutos do projeto (baseComponent de cada JSON), sem normalização Q-Rapids."""
+    rows = []
+    for path in glob(os.path.join(DATA_DIR, "TPPE-2026.1-Marketplace-*.json")):
+        match = SONAR_FILENAME_RE.match(os.path.basename(path))
+        if not match:
+            continue
+        raw = unmarshall(path)
+        base = raw.get("baseComponent") or {}
+        measures = {m["metric"]: m.get("value") for m in base.get("measures", [])}
+        if not measures:
+            continue
+        row = {m: pd.to_numeric(measures.get(m), errors="coerce") for m in METRIC_LIST}
+
+        # Métricas de teste que não vêm no baseComponent: soma dos arquivos de teste (UTS).
+        uts_measures = [
+            {m["metric"]: m.get("value") for m in c.get("measures", [])}
+            for c in raw.get("components", []) if c.get("qualifier") == "UTS"
+        ]
+        for metric in ("tests", "test_errors", "test_failures", "test_execution_time"):
+            values = pd.to_numeric(pd.Series([u.get(metric) for u in uts_measures], dtype=object),
+                                   errors="coerce").dropna()
+            if pd.isna(row[metric]) and not values.empty:
+                row[metric] = values.sum()
+        row["repository"] = match.group("repo")
+        row["version"] = match.group("version")
+        row["datetime"] = pd.to_datetime(match.group("datetime"),
+                                         format="%m-%d-%Y-%H-%M-%S", errors="coerce")
+        rows.append(row)
+
+    if not rows:
+        return pd.DataFrame()
+    return pd.DataFrame(rows).sort_values(["datetime", "repository"]).reset_index(drop=True)
 
 
 # ---------------------------------------------------------------------------
@@ -298,12 +345,12 @@ def _quality_rating(value: float) -> tuple:
 
 
 def _add_release_lines(fig: go.Figure) -> go.Figure:
-    """Adiciona linhas verticais pontilhadas amarelas marcando o término de cada sprint (2 semanas)."""
+    """Adiciona linhas verticais pontilhadas marcando o término de cada sprint (2 semanas)."""
     for i, ts in enumerate(_sprint_end_dates(), start=1):
         fig.add_vline(
             x=ts.timestamp() * 1000,
             line_dash="dot",
-            line_color="#FFD600",
+            line_color=DK_BRAND_LIGHT,
             annotation_text=f"Sprint {i}",
             annotation_position="top",
         )
@@ -734,39 +781,49 @@ def build_gantt_df(sprint_df: pd.DataFrame, us_status: dict, today: datetime.dat
 # UI
 # ---------------------------------------------------------------------------
 # ── Tema / CSS global ─────────────────────────────────────────────────────────
-st.markdown("""
+st.markdown(f"""
 <style>
 /* Destaque na primeira aba (Visão Principal) */
-div[data-testid="stTabs"] button[data-baseweb="tab"]:first-of-type {
-    background-color: #2B4D6F;
-    color: #ffffff !important;
+div[data-testid="stTabs"] button[data-baseweb="tab"]:first-of-type {{
+    background-color: {DK_CARD};
+    color: {DK_FOREGROUND} !important;
     border-radius: 6px 6px 0 0;
     font-weight: 700;
     padding: 8px 20px;
-}
-div[data-testid="stTabs"] button[data-baseweb="tab"]:first-of-type:hover {
-    background-color: #3a6491;
-}
+}}
+div[data-testid="stTabs"] button[data-baseweb="tab"]:first-of-type:hover {{
+    background-color: {DK_BORDER};
+}}
 /* Abas inativas */
-div[data-testid="stTabs"] button[data-baseweb="tab"] {
-    color: #a0b8d0;
-}
+div[data-testid="stTabs"] button[data-baseweb="tab"] {{
+    color: {DK_MUTED};
+}}
 /* Aba ativa (qualquer) */
-div[data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] {
-    border-bottom: 3px solid #5f7ea3;
-}
+div[data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] {{
+    border-bottom: 3px solid {DK_BRAND};
+}}
 /* Cards de métrica */
-div[data-testid="metric-container"] {
-    background-color: #1a3251;
-    border: 1px solid #2B4D6F;
-    border-radius: 8px;
+div[data-testid="metric-container"] {{
+    background-color: {DK_CARD};
+    border: 1px solid {DK_BORDER};
+    border-radius: 10px;
     padding: 12px 16px;
-}
+}}
 </style>
+""", unsafe_allow_html=True)
+
+# ── Cabeçalho: logo da DK Fashion centralizado ───────────────────────────────
+with open(_LOGO_PATH, "rb") as _logo_file:
+    _logo_b64 = base64.b64encode(_logo_file.read()).decode()
+st.markdown(f"""
+<div style="display:flex; justify-content:center; margin:-24px 0 8px;">
+    <img src="data:image/png;base64,{_logo_b64}" alt="DK Fashion" style="width:140px;">
+</div>
 """, unsafe_allow_html=True)
 
 sonar_df = load_sonar_data()
 sonar_metrics = build_sonar_metrics(sonar_df) if not sonar_df.empty else {}
+sonar_raw_df = load_sonar_raw_data()
 runs_df = load_github_runs()
 issues_df = load_github_issues()
 sprint_df = load_sprint_data()
@@ -841,14 +898,14 @@ with tab_qualidade_produto:
         for col, repo in zip(quality_cols, selected_sonar_repos):
             df = sonar_metrics.get(repo)
             if df is None or df.empty:
-                letter, color = "—", "#5f7ea3"
+                letter, color = "—", DK_MUTED
             else:
                 last = df.iloc[-1]
                 letter, color = _quality_rating(last["total"])
             col.markdown(f"""
-            <div style="text-align:center; padding:14px 8px; background-color:#1a3251;
+            <div style="text-align:center; padding:14px 8px; background-color:{DK_CARD};
                         border-radius:10px; border:2px solid {color};">
-                <div style="font-size:14px; color:#a0b8d0; margin-bottom:6px;">{repo}</div>
+                <div style="font-size:14px; color:{DK_MUTED}; margin-bottom:6px;">{repo}</div>
                 <div style="font-size:38px; font-weight:800; color:{color}; line-height:1;">{letter}</div>
             </div>
             """, unsafe_allow_html=True)
@@ -864,7 +921,7 @@ with tab_qualidade_produto:
             f"""<span style="display:inline-flex; align-items:center; margin-right:18px;">
                     <span style="display:inline-block; width:16px; height:16px; border-radius:3px;
                                  background-color:{color}; margin-right:6px;"></span>
-                    <span style="color:#a0b8d0; font-size:13px;"><b>{letter}</b> {rng}</span>
+                    <span style="color:{DK_MUTED}; font-size:13px;"><b>{letter}</b> {rng}</span>
                 </span>"""
             for letter, color, rng in legend_items
         )
@@ -897,3 +954,180 @@ with tab_qualidade_produto:
         st.plotly_chart(fig8, use_container_width=True)
 
         st.markdown("---")
+        st.markdown("### Maintainability e Reliability ao Longo do Tempo")
+        # Uma barra por dia e repositório: vale o último snapshot gerado no dia.
+        mr_frames = [
+            sonar_metrics[repo].assign(repository=repo)
+            for repo in selected_sonar_repos
+            if repo in sonar_metrics and not sonar_metrics[repo].empty
+        ]
+        if mr_frames:
+            mr_df = pd.concat(mr_frames, ignore_index=True).sort_values("datetime")
+            mr_df["dia"] = mr_df["datetime"].dt.normalize()
+            mr_df = mr_df.groupby(["repository", "dia"], as_index=False).last()
+            mr_df = mr_df.sort_values("dia")
+            mr_df["Snapshot"] = mr_df["dia"].dt.strftime("%d/%m")
+            snapshot_order = list(dict.fromkeys(mr_df["Snapshot"]))
+
+            col_mr1, col_mr2 = st.columns(2)
+            for col, aspect in ((col_mr1, "Maintainability"), (col_mr2, "Reliability")):
+                with col:
+                    st.markdown(f"##### {aspect}")
+                    fig_mr = go.Figure()
+                    for repo in selected_sonar_repos:
+                        rdf = mr_df[mr_df["repository"] == repo]
+                        if rdf.empty:
+                            continue
+                        fig_mr.add_trace(go.Bar(
+                            x=rdf["Snapshot"], y=rdf[aspect], name=repo,
+                            customdata=rdf[["version", "datetime"]].astype(str),
+                            hovertemplate="%{x} – último snapshot: %{customdata[1]} "
+                                          "(%{customdata[0]})<br>%{y:.2f}<extra></extra>",
+                        ))
+                    fig_mr.update_layout(
+                        barmode="group",
+                        yaxis_range=[0, 1],
+                        xaxis=dict(type="category", categoryorder="array",
+                                   categoryarray=snapshot_order, tickangle=-45),
+                        hovermode="x unified",
+                    )
+                    st.plotly_chart(fig_mr, use_container_width=True)
+
+        st.markdown("---")
+
+        # ── 4. Boxplot — Distribuição de Qualidade ──────────────────────────────
+        st.markdown("### Boxplot — Distribuição de Qualidade")
+        box_data = []
+        for repo in selected_sonar_repos:
+            df = sonar_metrics.get(repo)
+            if df is None or df.empty:
+                continue
+            for _, row in df.iterrows():
+                box_data.append({"Repositório": repo, "Maintainability": row["Maintainability"], "Reliability": row["Reliability"]})
+
+        if box_data:
+            box_df = pd.DataFrame(box_data)
+            fig10 = px.box(
+                box_df.melt(id_vars="Repositório", var_name="Aspecto", value_name="Valor"),
+                x="Repositório", y="Valor", color="Aspecto",
+            )
+            fig10.update_layout(yaxis_tickformat=".0%", yaxis_range=[0, 1])
+            st.plotly_chart(fig10, use_container_width=True)
+
+        st.markdown("---")
+
+        # ── 5. Testing Status e Code Quality ─────────────────────────────────────
+        col_f, col_g = st.columns(2)
+
+        with col_f:
+            st.markdown("### Code Quality")
+            fig6 = go.Figure()
+            for repo in selected_sonar_repos:
+                df = sonar_metrics.get(repo)
+                if df is None or df.empty:
+                    continue
+                fig6.add_trace(go.Scatter(
+                    x=df["datetime"], y=df["code_quality"],
+                    mode="lines+markers", name=repo,
+                    hovertemplate="%{x}<br>%{y:.2f}<extra></extra>",
+                ))
+            fig6.update_layout(yaxis_range=[0, 1], hovermode="x unified")
+            _add_release_lines(fig6)
+            st.plotly_chart(fig6, use_container_width=True)
+
+        with col_g:
+            st.markdown("### Testing Status")
+            fig7 = go.Figure()
+            for repo in selected_sonar_repos:
+                df = sonar_metrics.get(repo)
+                if df is None or df.empty:
+                    continue
+                fig7.add_trace(go.Scatter(
+                    x=df["datetime"], y=df["testing_status"],
+                    mode="lines+markers", name=repo,
+                    hovertemplate="%{x}<br>%{y:.2f}<extra></extra>",
+                ))
+            fig7.update_layout(yaxis_range=[0, 1], hovermode="x unified")
+            _add_release_lines(fig7)
+            st.plotly_chart(fig7, use_container_width=True)
+
+        st.markdown("---")
+
+        # ── 6. Snapshot Atual por Repositório ────────────────────────────────────
+        st.markdown("### Snapshot Atual por Repositório")
+        snapshot_rows = []
+        for repo in selected_sonar_repos:
+            df = sonar_metrics.get(repo)
+            if df is None or df.empty:
+                continue
+            last = df.iloc[-1]
+            snapshot_rows.append({
+                "Repositório": repo,
+                "Versão": last.get("version", ""),
+                "Complexidade": f"{last['complexity']:.1%}",
+                "Cobertura": f"{last['coverage']:.1%}",
+                "Duplicação": f"{last['duplication']:.1%}",
+                "Code Quality": f"{last['code_quality']:.1%}",
+                "Testing Status": f"{last['testing_status']:.1%}",
+                "Maintainability": f"{last['Maintainability']:.1%}",
+                "Reliability": f"{last['Reliability']:.1%}",
+                "Total": f"{last['total']:.1%}",
+            })
+        if snapshot_rows:
+            st.dataframe(pd.DataFrame(snapshot_rows), use_container_width=True)
+
+
+        st.markdown("---")
+
+        # ── 7. Dados brutos do SonarCloud (baseComponent dos JSONs) ──────────────
+        st.markdown("### Dados Brutos do SonarCloud")
+        st.caption("Valores do projeto como vêm nos JSONs exportados (baseComponent), "
+                   "sem a normalização do Q-Rapids. Métricas de teste ausentes no "
+                   "baseComponent são a soma dos arquivos de teste (UTS).")
+
+        RAW_METRIC_LABELS = {
+            "files": "Arquivos",
+            "functions": "Funções",
+            "complexity": "Complexidade",
+            "comment_lines_density": "Comentários (%)",
+            "duplicated_lines_density": "Duplicação (%)",
+            "coverage": "Cobertura (%)",
+            "ncloc": "Linhas de código",
+            "tests": "Testes",
+            "test_errors": "Erros de teste",
+            "test_failures": "Falhas de teste",
+            "test_execution_time": "Tempo dos testes (ms)",
+            "security_rating": "Rating de segurança",
+        }
+
+        raw_view = (
+            sonar_raw_df[sonar_raw_df["repository"].isin(selected_sonar_repos)].copy()
+            if not sonar_raw_df.empty else pd.DataFrame()
+        )
+        if raw_view.empty:
+            st.info("Nenhum dado bruto encontrado nos JSONs de `data/`.")
+        else:
+            missing_raw = [m for m in METRIC_LIST if raw_view[m].isna().all()]
+            if missing_raw:
+                st.warning("Métricas do Q-Rapids ausentes nos JSONs: "
+                           + ", ".join(f"`{m}`" for m in missing_raw))
+
+            raw_table = raw_view[["repository", "datetime", "version", *METRIC_LIST]].sort_values(
+                ["repository", "datetime"], ascending=[True, False])
+            st.dataframe(
+                raw_table,
+                use_container_width=True,
+                hide_index=True,
+                column_config={
+                    "repository": "Repositório",
+                    "datetime": st.column_config.DatetimeColumn("Data", format="DD/MM/YYYY HH:mm"),
+                    "version": "Versão",
+                    **{m: st.column_config.NumberColumn(label) for m, label in RAW_METRIC_LABELS.items()},
+                },
+            )
+            st.download_button(
+                "Baixar CSV",
+                raw_table.to_csv(index=False).encode("utf-8"),
+                file_name="sonar_dados_brutos.csv",
+                mime="text/csv",
+            )
