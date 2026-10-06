@@ -80,7 +80,6 @@ só o merge).
 | #72   | Frontend    | [#128](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/pull/128) | Mergeado |
 | #203  | Backend     | [#128](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Backend/pull/193)  | Mergeado |
 
-
 ## Notas de apuração
 
 - **Grupo 2** é o único totalmente rastreável pelo histórico de commits: todas
