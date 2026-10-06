@@ -310,20 +310,20 @@ def build_sonar_metrics(sonar_df: pd.DataFrame) -> dict:
 # Datas de sprint — linhas verticais nos gráficos de qualidade
 # ---------------------------------------------------------------------------
 
-SPRINT_START_DATE = "01/09/2026"
+SPRINT_END_DATES = ["14/09/2026", "06/10/2026", "17/10/2026"]
 SPRINT_END_LIMIT = "30/11/2026"
 SPRINT_LENGTH_DAYS = 14
 
 
 def _sprint_end_dates() -> list:
-    """Gera as datas de término de cada sprint (2 semanas), a partir do início do projeto.
+    """Datas de término de cada sprint.
 
-    Sprint 1: 01/09 a 14/09 (14 dias, ambos inclusive) — término em 14/09.
+    As sprints já definidas vêm de SPRINT_END_DATES (Sprint 1: 14/09, Sprint 2: 06/10,
+    Sprint 3: 17/10); as seguintes são projetadas a cada 2 semanas até SPRINT_END_LIMIT.
     """
-    start = pd.to_datetime(SPRINT_START_DATE, dayfirst=True)
+    dates = [pd.to_datetime(d, dayfirst=True) for d in SPRINT_END_DATES]
     limit = pd.to_datetime(SPRINT_END_LIMIT, dayfirst=True)
-    dates = []
-    current_end = start + pd.Timedelta(days=SPRINT_LENGTH_DAYS - 1)
+    current_end = dates[-1] + pd.Timedelta(days=SPRINT_LENGTH_DAYS)
     while current_end <= limit:
         dates.append(current_end)
         current_end += pd.Timedelta(days=SPRINT_LENGTH_DAYS)
