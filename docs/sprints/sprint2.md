@@ -21,7 +21,7 @@ cruzado com o conteúdo do slide `GCES - Sprint 2 .pdf`.
 | ------- | ----------------------------------------------------- |
 | Grupo 1 | Bruno Bragança, Eduardo Sandes, Marcio Costa          |
 | Grupo 2 | Ana Luiza Aroeira, Gabriel Anjos, Leonardo Sauma      |
-| Grupo 3 | Ana Luiza Carvalho, Yzabella Miranda, Mateus Consorte |
+| Grupo 3 | Ana Luiza Carvalho, Mateus Consorte, Yzabella Miranda |
 
 ## Resumo por trio
 
@@ -37,11 +37,10 @@ Swagger em produção por padrão. No Frontend, centralizou máscaras de
 telefone/CPF/CEP nos formulários do site e criou uma tela gamificada de
 ranking de vendedores para a loja física.
 
-**Grupo 3**, design e produto: estruturou as fundações do Design System
-(tokens de cor, tipografia, espaçamento, raio, elevação e motion), criou a
-biblioteca de componentes em variant sets, documentou os fluxos de
-finalização de compra e pagamento para handoff, e organizou o quadro do
-GitHub Projects usado pela equipe.
+**Grupo 3**, design e produto: refatorou o design de produto do Frontend
+para o novo Design System, contemplando a Home da loja, a listagem de
+produtos e o detalhe do produto, além de implementar o CI/CD do Frontend. Também substituiu o Header e o Footer da
+loja pelos componentes do Figma.
 
 ## Atividades detalhadas
 
@@ -50,35 +49,45 @@ ficam ao final. Datas de commit são a evidência primária; PRs ainda não
 mergeados estão marcados como tal (trabalho feito e demonstrável, faltando
 só o merge).
 
-| Trio                              | Atividade                                                                                                     | Data       |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------- | ---------- |
-| Equipe completa                   | Reunião presencial: início da sprint                                                                          | 05/09/2026 |
-| Equipe completa                   | Reunião no Teams: comunicação entre os grupos para alinhar o que seria feito na sprint                        | 30/09/2026 |
-| Grupo 1 (Bruno, Eduardo e Márcio) | Adição das seguintes métricas no dashboard de qualidade: falhas de teste, erros de teste e tempo de teste     | 03/10/2026 |
-| Grupo 1 (Bruno, Eduardo e Márcio) | Melhora da estética do dashboard de qualidade                                                                 | 03/10/2026 |
-| Grupo 1 (Bruno, Eduardo e Márcio) | Implementação dos testes automatizados no front                                                               | 03/10/2026 |
-| Grupo 1 (Bruno, Eduardo e Márcio) | Correções no workflow de métricas (mudança para executar somente após a conclusão da análise do Sonar)        | 03/10/2026 |
-| Grupo 1 (Bruno, Eduardo e Márcio) | Implementação dos componentes do carrinho                                                                     | 05/10/2026 |
-| Grupo 1 (Bruno, Eduardo e Márcio) | Implementação da infraestrutura de testes das novas páginas e componentes                                     | 05/10/2026 |
-| Grupo 1 (Bruno, Eduardo e Márcio) | Implementação dos testes unitários dos componentes do carrinho                                                | 05/10/2026 |
-| Grupo 1 (Bruno, Eduardo e Márcio) | Integração da execução de testes automatizados ao workflow de CI                                              | 05/10/2026 |
-| Grupo 1 (Bruno, Eduardo e Márcio) | Implementação da nova página de carrinho                                                                      | 05/10/2026 |
-| Grupo 1 (Bruno, Eduardo e Márcio) | Implementação da nova página de checkout                                                                      | 05/10/2026 |
-| Grupo 1 (Bruno, Eduardo e Márcio) | Implementação da nova página de confirmação do pedido e integração com o retorno do gateway de pagamento      | 05/10/2026 |
-| Grupo 1 (Bruno, Eduardo e Márcio) | Atualização dos testes automatizados de Selenium para os fluxos de carrinho, checkout e confirmação de pedido | 05/10/2026 |
-| Grupo 1 (Bruno, Eduardo e Márcio) | Implementação dos componentes de interface base e ajustes nos tokens do design system conforme o Figma        | 05/10/2026 |
-| Equipe completa                   | Reunião no Teams: alinhamento da apresentação                                                                 | 05/10/2026 |
+| Trio                                      | Atividade                                                                                                     | Data       |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ---------- |
+| Equipe completa                           | Reunião presencial: início da sprint                                                                          | 05/09/2026 |
+| Equipe completa                           | Reunião no Teams: comunicação entre os grupos para alinhar o que seria feito na sprint                        | 30/09/2026 |
+| Grupo 1 (Bruno, Eduardo e Márcio)         | Adição das seguintes métricas no dashboard de qualidade: falhas de teste, erros de teste e tempo de teste     | 03/10/2026 |
+| Grupo 1 (Bruno, Eduardo e Márcio)         | Melhora da estética do dashboard de qualidade                                                                 | 03/10/2026 |
+| Grupo 1 (Bruno, Eduardo e Márcio)         | Implementação dos testes automatizados no front                                                               | 03/10/2026 |
+| Grupo 1 (Bruno, Eduardo e Márcio)         | Correções no workflow de métricas (mudança para executar somente após a conclusão da análise do Sonar)        | 03/10/2026 |
+| Grupo 1 (Bruno, Eduardo e Márcio)         | Implementação dos componentes do carrinho                                                                     | 05/10/2026 |
+| Grupo 1 (Bruno, Eduardo e Márcio)         | Implementação da infraestrutura de testes das novas páginas e componentes                                     | 05/10/2026 |
+| Grupo 1 (Bruno, Eduardo e Márcio)         | Implementação dos testes unitários dos componentes do carrinho                                                | 05/10/2026 |
+| Grupo 1 (Bruno, Eduardo e Márcio)         | Integração da execução de testes automatizados ao workflow de CI                                              | 05/10/2026 |
+| Grupo 1 (Bruno, Eduardo e Márcio)         | Implementação da nova página de carrinho                                                                      | 05/10/2026 |
+| Grupo 1 (Bruno, Eduardo e Márcio)         | Implementação da nova página de checkout                                                                      | 05/10/2026 |
+| Grupo 1 (Bruno, Eduardo e Márcio)         | Implementação da nova página de confirmação do pedido e integração com o retorno do gateway de pagamento      | 05/10/2026 |
+| Grupo 1 (Bruno, Eduardo e Márcio)         | Atualização dos testes automatizados de Selenium para os fluxos de carrinho, checkout e confirmação de pedido | 05/10/2026 |
+| Grupo 1 (Bruno, Eduardo e Márcio)         | Implementação dos componentes de interface base e ajustes nos tokens do design system conforme o Figma        | 05/10/2026 |
+| Grupo 3 (Ana Carvalho, Yzabella e Mateus) | Refatoração da Home da loja para o novo Design System                                             | 05/10/2026 |
+| Grupo 3 (Ana Carvalho, Yzabella e Mateus) | Refatoração da listagem de produtos para o novo Design System                                     | 05/10/2026 |
+| Grupo 3 (Ana Carvalho, Yzabella e Mateus) | Refatoração do detalhe do produto para o novo Design System                                       | 05/10/2026 |
+| Grupo 3 (Ana Carvalho, Yzabella e Mateus) | Implementação do CI/CD do Frontend                                                                | 05/10/2026 |
+| Grupo 3 (Ana Carvalho, Yzabella e Mateus) | Novo Header e Footer da loja a partir do Figma                                                    | 05/10/2026 |
+| Equipe completa                           | Reunião no Teams: alinhamento da apresentação                                                                 | 05/10/2026 |
 
 ## Evidências (Pull Requests)
 
-| Issue | Repositório | PR                                                                               | Status   |
-| ----- | ----------- | -------------------------------------------------------------------------------- | -------- |
-| #129  | Frontend    | [#124](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/pull/124) | Mergeado |
-| #129  | Frontend    | [#125](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/pull/125) | Mergeado |
-| #130  | Frontend    | [#126](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/pull/126) | Mergeado |
-| #72   | Frontend    | [#127](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/pull/127) | Mergeado |
-| #72   | Frontend    | [#128](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/pull/128) | Mergeado |
-| #203  | Backend     | [#128](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Backend/pull/193)  | Mergeado |
+| Issue                                                                              | Repositório | PR                                                                               | Status   |
+| ---------------------------------------------------------------------------------- | ----------- | -------------------------------------------------------------------------------- | -------- |
+| #129                                                                               | Frontend    | [#124](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/pull/124) | Mergeado |
+| #129                                                                               | Frontend    | [#125](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/pull/125) | Mergeado |
+| #130                                                                               | Frontend    | [#126](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/pull/126) | Mergeado |
+| #72                                                                                | Frontend    | [#127](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/pull/127) | Mergeado |
+| #72                                                                                | Frontend    | [#128](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/pull/128) | Mergeado |
+| #203                                                                               | Backend     | [#128](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Backend/pull/193)  | Mergeado |
+| -                                                                                  | Frontend    | [#133](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/pull/133) | Mergeado |
+| [#135](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/issues/135) | Frontend    | -                                                                                | Fechada  |
+| [#136](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/issues/136) | Frontend    | -                                                                                | Fechada  |
+| [#137](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/issues/137) | Frontend    | -                                                                                | Fechada  |
+| [#138](https://github.com/TPPE-2026-1-Marketplace/MarketPlace-Frontend/issues/138) | Frontend    | -                                                                                | Fechada  |
 
 
 ## Notas de apuração
