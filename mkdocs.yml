@@ -119,6 +119,7 @@ nav:
       - Visão Geral: sprints.md
       - Modelo de Relatório: sprints/template.md
       - Sprint 01: sprints/01.md
+      - Sprint 02: sprints/02.md
   - Entregas - TPPE: releases.md
   - Guia de Contribuição: contributing_guidelines.md
   - Gitflow do Projeto: gitflow.md
