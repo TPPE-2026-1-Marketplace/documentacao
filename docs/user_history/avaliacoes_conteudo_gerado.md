@@ -10,6 +10,8 @@
 
 - A avaliação em estrelas deve aceitar notas de 1 a 5.
 - O comentário textual deve permitir até 2.000 caracteres.
+- O cliente pode editar a nota e/ou o comentário da própria avaliação; a data da última edição fica registrada.
+- O cliente pode remover a própria avaliação.
 
 ## US08 - Visualização de avaliação do produto
 
@@ -36,3 +38,4 @@ As avaliações devem ser exibidas logo abaixo das especificações do produto.
 | `1.2` | [Bruno Bragança](https://github.com/BrunoBReis) | Verificação e Atualização com incremento de Regras de negócio | 29/03/2026 |
 | `1.3` | [Bruno Bragança](https://github.com/BrunoBReis) | Reorganização, renumeração e refinamento das histórias de usuário | 06/04/2026 |
 | `1.4` | [Pablo](https://github.com/Pabloserrapxx) | Atualização das histórias de usuário | 26/04/2026 |
+| `1.5` | [Gabriel](https://github.com/SAnjos3) | Regras de edição e remoção da própria avaliação na US07 | 26/10/2026 |
