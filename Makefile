@@ -81,6 +81,10 @@ slides: ## Gera as apresentações em HTML (slides/dist/)
 slides-pdf: ## Gera as apresentações em HTML e PDF
 	./scripts/build-slides.sh --pdf
 
+.PHONY: banner
+banner: ## Gera o PDF de impressão do banner acadêmico (banner/dist/)
+	$(COMPOSE) run --rm --user $(HOST_USER) banner
+
 ##@ Dashboard de QA
 
 .PHONY: qa-serve

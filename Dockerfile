@@ -45,3 +45,17 @@ WORKDIR /app/qa-analytics
 EXPOSE 8501
 
 CMD ["streamlit", "run", "dashboard.py", "--server.address=0.0.0.0", "--server.port=8501"]
+
+# Estágio isolado do banner acadêmico (scripts/build-banner.sh): Chromium para
+# imprimir o HTML em PDF e Ghostscript para converter o PDF para CMYK.
+# As fontes do banner ficam versionadas em banner/fonts/, então a imagem não
+# precisa de pacotes de fontes.
+FROM debian:bookworm-slim AS banner
+
+RUN apt-get update \
+    && apt-get install --yes --no-install-recommends chromium ghostscript \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+CMD ["./scripts/build-banner.sh"]
