@@ -82,11 +82,34 @@ LinkChecker em `.linkcheckerrc`. A checagem de links externos roda no CI de
 forma informativa: ela não bloqueia o merge, porque depende de serviços de
 terceiros.
 
+## Banner acadêmico
+
+O banner de divulgação do DK Fashion (lona 80 x 120 cm) é um HTML em
+`banner/banner.html`, com medidas em centímetros. Para gerar o PDF de impressão:
+
+```bash
+make banner   # PDFs e prévia em banner/dist/
+```
+
+O script `scripts/build-banner.sh` roda no container `banner` e:
+
+1. imprime o HTML em PDF com o Chromium (`banner-rgb.pdf`, vetorial);
+2. converte o PDF para CMYK com o Ghostscript (`banner-cmyk.pdf`, o arquivo
+   que vai para a gráfica);
+3. gera uma prévia em baixa resolução (`banner-preview.png`).
+
+O documento tem 82 x 122 cm (1 cm de sangria por lado) e o texto fica a pelo
+menos 3 cm do corte, por causa dos ilhós/bastão. Ao editar o HTML, use
+`cm`/`pt` e evite `box-shadow`, `filter` e `opacity`: o Chrome rasteriza esses
+efeitos em baixa resolução. As fontes ficam em `banner/fonts/` e os
+arquivos de imagem em `banner/assets/`. A saída em `banner/dist/` não é versionada.
+
 ## Como funciona a conteinerização
 
-- o `Dockerfile` tem dois estágios: `docs` (MkDocs, a partir do
-  `requirements.txt`) e `quality` (adiciona o LinkChecker, do
-  `requirements-dev.txt`);
+- o `Dockerfile` tem os estágios `docs` (MkDocs, a partir do
+  `requirements.txt`), `quality` (adiciona o LinkChecker, do
+  `requirements-dev.txt`), `qa-analytics` (dashboard de QA) e `banner`
+  (Chromium e Ghostscript, usados só por `make banner`);
 - o `compose.yaml` publica a porta `8000` e monta o diretório do projeto em `/app`;
 - esse volume permite editar arquivos em `docs/` e ver as mudanças com hot reload no MkDocs;
 - os serviços `lint-md` e `check-links` ficam no profile `quality`, então não
@@ -131,6 +154,10 @@ Detalhes:
 .
 |-- .githooks/
 |   `-- commit-msg
+|-- banner/
+|   |-- banner.html
+|   |-- assets/
+|   `-- fonts/
 |-- docs/
 |   |-- index.md
 |   |-- contributing_guidelines.md
@@ -141,6 +168,7 @@ Detalhes:
 |   |-- dashboard.py
 |   `-- requirements.txt
 |-- scripts/
+|   |-- build-banner.sh
 |   `-- check-links.sh
 |-- mkdocs.yml
 |-- Dockerfile
