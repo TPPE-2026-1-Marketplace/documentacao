@@ -58,3 +58,15 @@ services:
       MARP_USER: "${MARP_USER:-1000:1000}"
     profiles:
       - slides
+
+  # Banner acadêmico em PDF de impressão (ver scripts/build-banner.sh).
+  banner:
+    image: dk-fashion-banner
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: banner
+    volumes:
+      - .:/app
+    profiles:
+      - banner

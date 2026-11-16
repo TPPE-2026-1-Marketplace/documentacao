@@ -64,6 +64,10 @@ make quality
 
 ```text
 .
+|-- banner/
+|   |-- banner.html
+|   |-- assets/
+|   `-- fonts/
 |-- docs/
 |   |-- index.md
 |   |-- backlog.md
@@ -82,6 +86,7 @@ make quality
 |   |-- dashboard.py
 |   `-- requirements.txt
 |-- scripts/
+|   |-- build-banner.sh
 |   |-- build-slides.sh
 |   `-- check-links.sh
 |-- mkdocs.yml
