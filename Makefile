@@ -1,77 +1,98 @@
+# Makefile da documentação. Todos os comandos rodam via Docker (compose.yaml).
+# `make help` é gerado a partir dos comentários `## ` de cada alvo e dos
+# títulos `##@`, no mesmo formato do backend e do frontend. Cada alvo declara
+# o próprio `.PHONY` logo acima dele.
+
 COMPOSE := docker compose
 
 # Roda os containers com o usuário do host para que os arquivos gerados
 # (site estático, correções do markdownlint) não fiquem pertencendo ao root.
 HOST_USER := $(shell id -u):$(shell id -g)
 
-.PHONY: help hooks hooks-off serve build stop lint-md lint-md-fix check-links check-links-extern quality slides slides-pdf qa-serve qa-stop clean
+.DEFAULT_GOAL := help
 
-help:
-	@echo "Targets disponíveis (todos rodam via Docker):"
-	@echo "  make hooks               ativa os hooks do repositório (.githooks)"
-	@echo "  make hooks-off           desativa os hooks do repositório"
-	@echo "  make serve               sobe a documentação em http://localhost:8000"
-	@echo "  make serve-background    sobe a documentação em background (libera o terminal)"
-	@echo "  make build               gera o site estático em ./site"
-	@echo "  make stop                para o container da documentação"
-	@echo "  make lint-md             valida o estilo do Markdown (markdownlint-cli2)"
-	@echo "  make lint-md-fix         corrige automaticamente o que for corrigível"
-	@echo "  make check-links         build --strict + checagem de links internos"
-	@echo "  make check-links-extern  idem, incluindo links externos (usa rede)"
-	@echo "  make quality             roda lint-md + check-links"
-	@echo "  make slides              gera as apresentações em HTML (slides/dist/)"
-	@echo "  make slides-pdf          gera as apresentações em HTML e PDF"
-	@echo "  make qa-serve            sobe o dashboard de QA em http://localhost:8501"
-	@echo "  make qa-stop             para o container do dashboard de QA"
-	@echo "  make clean               remove containers e imagens locais"
+##@ Setup
+
+.PHONY: help
+help: ## Lista os comandos disponíveis
+	@awk 'BEGIN { FS = ":.*## " } \
+		/^##@/ { printf "\n%s\n", substr($$0, 5) } \
+		/^[a-zA-Z0-9_-]+:.*## / { printf "  make %-22s %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
+	@echo ""
 
 # Aponta o Git para os hooks versionados: o commit-msg preenche os
 # Co-authored-by do trio. Basta rodar uma vez por clone.
-hooks:
+.PHONY: hooks
+hooks: ## Ativa o commit-msg versionado (.githooks)
 	git config core.hooksPath .githooks
 	@echo "Hooks ativados a partir de .githooks/"
 
-hooks-off:
+.PHONY: hooks-off
+hooks-off: ## Desativa o commit-msg versionado (volta para .git/hooks)
 	git config --unset core.hooksPath || true
 	@echo "Hooks desativados (voltando para .git/hooks)"
 
-serve:
+##@ Documentação
+
+.PHONY: serve
+serve: ## Sobe a documentação em http://localhost:8000
 	$(COMPOSE) up --build docs
 
-serve-background:
-	$(COMPOSE) up --build -d docs
+.PHONY: serve-background
+serve-background: ## Sobe a documentação em background (libera o terminal)
+	$(COMPOSE) up --build --detach docs
 
-build:
+.PHONY: build
+build: ## Gera o site estático em ./site
 	$(COMPOSE) run --rm --no-deps --user $(HOST_USER) docs mkdocs build --strict
 
-stop:
+.PHONY: stop
+stop: ## Para o container da documentação
 	$(COMPOSE) down
 
-lint-md:
+##@ Qualidade
+
+.PHONY: lint-md
+lint-md: ## Valida o estilo do Markdown (markdownlint-cli2)
 	$(COMPOSE) run --rm lint-md
 
-lint-md-fix:
+.PHONY: lint-md-fix
+lint-md-fix: ## Corrige automaticamente o que for corrigível no Markdown
 	$(COMPOSE) run --rm --user $(HOST_USER) lint-md --fix
 
-check-links:
+.PHONY: check-links
+check-links: ## Build --strict + checagem de links internos
 	$(COMPOSE) run --rm check-links
 
-check-links-extern:
+.PHONY: check-links-extern
+check-links-extern: ## Idem, incluindo links externos (usa rede)
 	$(COMPOSE) run --rm check-links ./scripts/check-links.sh --extern
 
-quality: lint-md check-links
+.PHONY: quality
+quality: lint-md check-links ## Roda lint-md + check-links
 
-slides:
+##@ Apresentações
+
+.PHONY: slides
+slides: ## Gera as apresentações em HTML (slides/dist/)
 	./scripts/build-slides.sh
 
-slides-pdf:
+.PHONY: slides-pdf
+slides-pdf: ## Gera as apresentações em HTML e PDF
 	./scripts/build-slides.sh --pdf
 
-qa-serve:
+##@ Dashboard de QA
+
+.PHONY: qa-serve
+qa-serve: ## Sobe o dashboard de QA em http://localhost:8501
 	$(COMPOSE) up --build qa-analytics
 
-qa-stop:
+.PHONY: qa-stop
+qa-stop: ## Para o container do dashboard de QA
 	$(COMPOSE) stop qa-analytics
 
-clean:
+##@ Utilidades
+
+.PHONY: clean
+clean: ## Remove containers e imagens locais
 	$(COMPOSE) down --rmi local --remove-orphans
